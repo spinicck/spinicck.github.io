@@ -61,13 +61,12 @@ function toggleLightDarkMode(){
  * @param {Element to expand/collapse} e 
  */
 function toggleExpandCard(e){
-    isCard = e.className.includes("card-item")
-    isCollapsed = e.className.includes("card-collapse")
-    if ( isCard && isCollapsed ) {
-        e.className = e.className.replace("card-collapse", "card-expand")
+    isCollapsed = e.classList.contains("card-collapse")
+    e.classList.toggle("card-collapse")
+    e.classList.toggle("card-expand")
+    if ( isCollapsed ) {
         e.getElementsByClassName("card-header-info")[0].innerHTML = "Click to collapse"
     } else {
-        e.className = e.className.replace("card-expand", "card-collapse")
         e.getElementsByClassName("card-header-info")[0].innerHTML = "Click to expand"
     }
 }
