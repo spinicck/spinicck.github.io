@@ -18,7 +18,7 @@
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
-        <script src="main.js"></script> 
+        <script defer src="main.js"></script> 
         <!-- Font Awesome icons -->
         <link href="assets/fontawesome/fontawesome-free-7.0.1-web/css/fontawesome.css" rel="stylesheet" />
         <link href="assets/fontawesome/fontawesome-free-7.0.1-web/css/brands.css" rel="stylesheet" />
@@ -75,35 +75,43 @@
     </template>
 
     <nav id="nav-bar" class="nav-bar">
-        <div class="nav-left">
-            <a class="nav-title" href="/">Kévin SPINICCI</a>
-        </div>
-        <div class="nav-main">
-            <a class="nav-link" onclick="toggleNavbar()" href="#aboutme" title="Details about me an my interest.">About me</a>
-            <a class="nav-link" onclick="toggleNavbar()" href="#research">Research</a>
-            <a class="nav-link" onclick="toggleNavbar()" href="#skills">Skills</a>
-            <a class="nav-link" onclick="toggleNavbar()" href="#contact">Contact</a>
-        </div>
-        <div class="nav-right">
-            <button class="nav-button" onclick="toggleLightDarkMode()">
-                <i id="nav-theme-icon" class="material-symbols-outlined material-icons md-36">light_mode</i>
-            </button>
+        <div class="nav-left nav-container">
+            <a class="nav-title nav-link" href="/">Kévin SPINICCI</a>
             <button class="nav-button" onclick="toggleNavbar()">
                 <i id="nav-toggle-icon" class="material-symbols-outlined material-icons md-36">menu</i>
             </button>
         </div>
+        <ul class="nav-main nav-container">
+            <li>
+                <a class="nav-link" onclick="toggleNavbar()" href="#aboutme" title="Details about me an my interest.">About me</a>
+            </li>
+            <li>
+                <a class="nav-link" onclick="toggleNavbar()" href="#research">Research</a>
+            </li>
+            <li>
+                <a class="nav-link" onclick="toggleNavbar()" href="#skills">Skills</a>
+            </li>
+            <li>
+                <a class="nav-link" onclick="toggleNavbar()" href="#contact">Contact</a>
+            </li>
+        </ul>
+        <div class="nav-right nav-container">
+            <button class="nav-button" onclick="toggleLightDarkMode()">
+                <i id="nav-theme-icon" class="material-symbols-outlined material-icons md-36">light_mode</i>
+            </button>
+        </div>
     </nav>
 	<body>
-        <section id="aboutme" class="body-section">
-            <div class="aboutme card">
+        <section id="aboutme" class="body-section show-on-scroll hidden from-bottom">
+            <div class="aboutme">
                 <div class="aboutme-main">
-                    <h1 class="aboutme-title section-title">About me</h1>
+                    <h1 class="aboutme-title">About me</h1>
                     <span class="aboutme-description">
                         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus vehicula, mauris nec hendrerit euismod, mi enim viverra justo, nec auctor libero velit et leo. Sed ac vulputate mauris. Sed sagittis hendrerit tortor eget facilisis. Praesent tincidunt ut sapien vitae vulputate. In gravida aliquam massa, ac bibendum ipsum feugiat non. Integer risus tellus, tristique sed risus a, semper eleifend magna. Donec rutrum ultrices enim vel mattis. Phasellus lacinia vehicula molestie.
                     </span>
                 </div>
                 <div class="aboutme-right">
-                    <img class="aboutme-picture" src="assets/Unknown_Member.jpg" alt="Profile Picture" width="256px">
+                    <img class="aboutme-picture" src="assets/Unknown_Member.jpg" alt="Profile Picture">
                 </div>
             </div>
         </section>

@@ -5,6 +5,23 @@
  ============================================================================= */
 
 /**
+ * Observer to animate element appearances on screen
+ */
+const showOnScrollObserver = new IntersectionObserver( (entries) => {
+    entries.forEach( (entry) => {
+        if (entry.isIntersecting) {
+            entry.target.classList.toggle("show")
+        } else {
+            entry.target.classList.toggle("show")
+        }
+    });
+})
+
+/* Get elements with scroll animation and add observer. */
+const showOnScrollElements = document.querySelectorAll(".show-on-scroll.hidden")
+showOnScrollElements.forEach( (el) => showOnScrollObserver.observe(el) );
+
+/**
  * Show/hide the navbar when the navbar toggle button is pressed.
  * Hide the navbar when an element is pressed.
  * @returns void
@@ -16,13 +33,12 @@ function toggleNavbar() {
     if ( !matchMedia("(max-width: 800px)").matches )  {
         return;
     }
-    if (navbar.className === "nav-bar") {
-        navbar.className += " compact";
-        navToggleIcon.innerHTML = "close"
-    } else {
-        navbar.className = "nav-bar";
+    if (navbar.classList.contains("compact")) {
         navToggleIcon.innerHTML = "menu"
+    } else {
+        navToggleIcon.innerHTML = "close"
     }
+    navbar.classList.toggle("compact")
 }
 
 /**

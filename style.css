@@ -5,7 +5,7 @@
 /* css classes */
 html{
     font-family: "Roboto", sans-serif, Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
-    font-size: 12pt;
+    font-size: 16px;
     color: var(--md-sys-color-on-background);
     background-color: var(--md-sys-color-background);
 }
@@ -37,22 +37,45 @@ body {
     padding: 15px 5vw 15px 5vw;
 }
 
+.card {
+    box-shadow: 4px 4px 8px var(--md-sys-color-shadow);
+}
+
+.from-bottom {
+    transform: translateY(10%);
+}
+
 .material-icons.md-18 { font-size: 18px; }
 .material-icons.md-24 { font-size: 24px; }
 .material-icons.md-36 { font-size: 36px; }
 .material-icons.md-48 { font-size: 48px; }
 
 /* multi-classes selectors */
-/* insert here in case these are needed */
+.show-on-scroll.hidden {
+    opacity: 0;
+    filter: blur(2px);
+    transition: all 1s ease-in-out;
+}
 
+.show-on-scroll.show {
+    opacity: 1;
+    filter: blur(0px);
+    transform: translateX(0);
+    transform: translateY(0);
+}
 /* dynamic and state rules (hover, active, ...) */
-/* insert here in case these are needed */
+@media(prefers-reduced-motion) {
+    .show-on-scroll.hidden {
+        transition: none;
+    }
+}
 
 /*******************************************************************************
 * Nav-bar
 *******************************************************************************/
 /* css classes */
 .nav-bar{
+    z-index: 999; /* ensure the nav-bar is on top of everything */
     position: sticky; /* Set the navbar to fixed position */    
     top: 0; /* Position the navbar at the top of the page */
     padding: 2vw 2vw 1vw 1vw;
@@ -62,17 +85,22 @@ body {
     gap: 1em;
     align-items: center;
     background: var(--md-sys-color-primary);
+    height: 5vh;
+    transition: 100ms ease-in;
 }
 
-.nav-main {
+.nav-container {
+    list-style: none;
     display: flex;
+    padding: 5px;
+    margin: 0;
+    height: inherit;
+    justify-items: center;
     align-items: center;
 }
 
-.nav-left, .nav-main, .nav-right {
-    height: inherit;
-    justify-content: center;
-    align-content: center;
+.nav-main {
+    gap: 15px;
 }
 
 .nav-link {
@@ -80,14 +108,19 @@ body {
 }
 
 .nav-title {
-    font-size: 1.4rem;
+    font-size: 1.2rem;
 }
 
 .nav-button{
     border: none;
     cursor: pointer;
     background: none;
-    border-radius: 100%;
+}
+
+.nav-right {
+    padding: 0;
+    margin: 0;
+    height: 100%;
 }
 
 /* multi-classes selectors */
@@ -96,7 +129,7 @@ body {
     text-decoration: none;
 }
 
-.nav-main .nav-link{
+.nav-container .nav-link{
     display: inline-block;
     text-align: center;
     border-radius: 5px;
@@ -108,9 +141,9 @@ body {
     flex-grow: 2;
 }
 
-.nav-button:hover{
-    color: var(--md-sys-color-on-primary-container);
-    background-color: var(--md-sys-color-primary-container);
+.nav-button:hover, .nav-link:hover{
+    transition: 100ms ease-in-out;
+    scale: 1.2;
 }
 
 .nav-link:hover{
@@ -118,21 +151,32 @@ body {
     background-color: var(--md-sys-color-primary-container);
 }
 
-.nav-bar .nav-button:last-child {display: none;}
+.nav-left .nav-button {display: none;}
 
-@media screen and (max-width: 800px){
-    .nav-bar .nav-link { display: none; }
-    .nav-bar .nav-button:not(:last-child) { display: none; }
-    .nav-bar .nav-button:last-child { display: block; }
+@media screen and (max-width: 600px){
+    .nav-main, .nav-right { display: none; font-size: 1.5rem;}
+    .nav-left .nav-button { display: block; }
 
-    .nav-bar.nav-bar.compact {
+    .nav-bar.compact {
         display: flex;
         flex-flow: column;
+        height: 60vh;
+    }
+
+    .nav-left {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        width: 100%; 
     }
 
     .nav-bar.compact .nav-main{
         display: flex;
         flex-flow: column;
+    }
+
+    .nav-bar.compact .nav-right{
+        display: flex;
     }
 
     .nav-bar.compact .nav-link{
@@ -152,8 +196,6 @@ body {
     display: grid;
     grid-template-columns: 6fr 4fr;
     column-gap: 5px 50px;
-    background: var(--md-sys-color-primary);
-    color: var(--md-sys-color-on-primary);
     border-radius: 25px;
     padding: 15px 15px 15px 15px;
 }
@@ -161,6 +203,7 @@ body {
 .aboutme-main {
     padding: 6px;
     padding-right: 12px;
+    font-size: 1.2rem;
 }
 
 .aboutme-right {
@@ -169,7 +212,8 @@ body {
 }
 
 .aboutme-title {
-    color: var(--md-sys-color-on-primary);
+    color: var(--md-sys-color-primary);
+    font-size: 4rem;
 }
 
 /* Used in html, use this for styling the description in 'aboutme' */
@@ -177,14 +221,28 @@ body {
 
 .aboutme-picture {
     border-radius: 100%;
+    max-width: 100%;
+    height: auto;
 }
 
 /* multi-classes selectors */
 /* insert here in case these are needed */
 
 /* dynamic and state rules (hover, active, ...) */
-.aboutme > div:nth-child(1) {
-    flex-grow: 2;
+@media screen and (max-width: 1000px) {
+    .aboutme {
+        display: flex;
+        flex-flow: column;
+        align-items: center;
+        justify-items: center;
+        gap: 10px;
+    }
+    .aboutme-main, .aboutme-right {
+        width: 100%;
+    }
+    .aboutme-right {
+        justify-content: center;
+    }
 }
 
 /*******************************************************************************
