@@ -268,7 +268,7 @@ body {
     gap: 5px;
     padding: 15px 15px 15px 15px;
     border-radius: 15px;
-    background-color: var(--md-sys-color-on-surface-container-lowest);
+    background: var(--md-sys-color-surface-container-lowest);
     color: var(--md-sys-color-on-surface-container);
 }
 
