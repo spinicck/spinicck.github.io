@@ -257,9 +257,11 @@ body {
     display: flex;
     flex-flow: row;
     flex-wrap: wrap;
-    align-items: center;
+    align-items: top;
     justify-content: center;
     gap: 50px;
+    position: relative;
+    padding: 2vw 2vh;
 }
 
 .card-item {
@@ -288,14 +290,17 @@ body {
 }
 
 .card-collapse {
-    max-width: 40%;
+    width: 40%;
     transition: all 500ms ease-in-out;
 }
 
 .card-expand {
-    max-width: 100%;
+    width: 92%;
+    height: 92%;
     box-shadow: 0px 0px 8px var(--md-sys-color-secondary);
     transition: all 500ms ease-in-out;
+    position: absolute;
+    z-index: 2;
 }
 
 /* multi-classes selectors */
