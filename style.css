@@ -254,13 +254,9 @@ body {
 }
 
 .card-list {
-    display: flex;
-    flex-flow: row;
-    flex-wrap: wrap;
-    align-items: top;
-    justify-content: center;
-    gap: 50px;
-    position: relative;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 15px;
     padding: 2vw 2vh;
 }
 
@@ -290,16 +286,14 @@ body {
 }
 
 .card-collapse {
-    width: 40%;
     transition: all 500ms ease-in-out;
 }
 
 .card-expand {
-    width: 92%;
-    height: 92%;
     box-shadow: 0px 0px 8px var(--md-sys-color-secondary);
+    position: relative;
+    transform-origin: center;
     transition: all 500ms ease-in-out;
-    position: absolute;
     z-index: 2;
 }
 

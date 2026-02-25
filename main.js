@@ -61,13 +61,26 @@ function toggleLightDarkMode(){
  * @param {Element to expand/collapse} e 
  */
 function toggleExpandCard(e){
+    /* Compute center of viewport */
+    let centerX = window.innerWidth / 2
+    let centerY = window.innerHeight / 2
+    /* Compute center of current element */
+    let bbox = e.getBoundingClientRect()
+    let coordX = bbox.x + ( bbox.width / 2 )
+    let coordY = bbox.y + ( bbox.height / 2 )
+    /* Compute translation vector */
+    let transVectX = centerX - coordX
+    let transVectY = centerY - coordY
     isCollapsed = e.classList.contains("card-collapse")
     e.classList.toggle("card-collapse")
     e.classList.toggle("card-expand")
+    console.debug(transVectX, " ", transVectY)
     if ( isCollapsed ) {
         e.getElementsByClassName("card-header-info")[0].innerHTML = "Click to collapse"
+        e.style.transform = `translate(${transVectX}px, ${transVectY}px)`
     } else {
         e.getElementsByClassName("card-header-info")[0].innerHTML = "Click to expand"
+        e.style.transform = ""
     }
 }
 
