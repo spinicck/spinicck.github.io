@@ -75,11 +75,21 @@ function toggleExpandCard(e){
     e.classList.toggle("card-collapse")
     e.classList.toggle("card-expand")
     console.debug(transVectX, " ", transVectY)
+    /* Switch icon and animate entrance */
+    let icon = e.getElementsByClassName("card-header-info")[0]
+    icon.classList.toggle("fa-minimize")
+    icon.classList.toggle("fa-expand")
+    icon.animate(
+        [
+            // From
+            { transform: "scale(0)", opacity: 0 },
+            { transform: "scale(1)", opacity: 1 }
+        ],
+        { duration: 400, iterations: 1 }
+    );
     if ( isCollapsed ) {
-        e.getElementsByClassName("card-header-info")[0].innerHTML = "Click to collapse"
         e.style.transform = `translate(${transVectX}px, ${transVectY}px)`
     } else {
-        e.getElementsByClassName("card-header-info")[0].innerHTML = "Click to expand"
         e.style.transform = ""
     }
 }
