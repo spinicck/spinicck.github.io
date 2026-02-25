@@ -4,6 +4,9 @@
  * Data: 2025-09-18
  ============================================================================= */
 
+var currentOpenedCard = null
+var currentOpenedModal = null
+
 /**
  * Observer to animate element appearances on screen
  */
@@ -92,4 +95,44 @@ function toggleExpandCard(e){
     } else {
         e.style.transform = ""
     }
+}
+
+
+async function openCard(e){
+    /* Compute center of viewport */
+    let centerX = window.innerWidth / 2
+    let centerY = window.innerHeight / 2
+    /* Compute center of current element */
+    let bbox = e.getBoundingClientRect()
+    let coordX = bbox.x + ( bbox.width / 2 )
+    let coordY = bbox.y + ( bbox.height / 2 )
+    /* Compute translation vector */
+    let transVectX = centerX - coordX
+    let transVectY = centerY - coordY
+    await e.animate(
+        [
+            // From
+            { transform: "translate(0,0)", opacity: 1 },
+            { transform: `translate(${transVectX}px, ${transVectY}px)`, opacity: 0 }
+        ],
+        { duration: 400, iterations: 1 }
+    ).finished
+    currentOpenedCard = e
+    let modal = e.getElementsByTagName("modal-content")[0].cloneNode(true)
+    modal.onclick = function(){
+        closeCard()
+    }
+    document.body.appendChild(modal)
+    modal.style.display = "flex"
+    currentOpenedModal = modal
+}
+
+function closeCard(){
+    console.debug(`currentOpenedModal: ${currentOpenedModal}`)
+    currentOpenedModal.style.display = "none"
+    currentOpenedModal.remove()
+    console.debug(`currentOpenedCard: ${currentOpenedCard}`)
+    currentOpenedCard.style.transform = ""
+    currentOpenedModal = null
+    currentOpenedCard = null
 }

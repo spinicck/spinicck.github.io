@@ -297,6 +297,26 @@ body {
     z-index: 2;
 }
 
+.modal {
+    display: none;
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    justify-content: center;
+    align-items: center;
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    background: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* Size content of the modal */
+.modal > div {
+    max-width: 90%;
+    max-height: 70%;
+    overflow: auto; /* Enable scroll if needed */
+}
+
 /* multi-classes selectors */
 /* insert here in case these are needed */
 
