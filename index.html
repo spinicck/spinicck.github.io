@@ -27,53 +27,6 @@
         <link href="assets/fontawesome/fontawesome-free-7.0.1-web/css/sharp-duotone-thin.css" rel="stylesheet" />
     </head>
 
-    <template id="regular-card">
-        <style>
-            :host{
-                display: contents;
-            }
-        </style>
-        <link rel="stylesheet" href="style.css" />
-        <div class="card-item card-shadow card-collapse">
-            <div class="card-header">
-                <h3 class="card-header-title">
-                    <slot name="card-title">Card title</slot>
-                </h3>
-            </div>
-            <div>
-                <span class="card-desc">
-                    <slot name="card-desc">
-                        Sample card description: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam rutrum fermentum ipsum, id ornare sem mattis id. Quisque sed dolor sit amet tellus condimentum iaculis. Quisque gravida laoreet sapien, nec euismod eros viverra eget. Phasellus sit amet rhoncus nibh. Sed non ipsum est. Nunc rutrum finibus massa quis semper. Duis nec neque cursus, ultrices tellus at, lacinia erat. Aenean at eros ligula. Fusce bibendum eu velit in molestie.
-                    </slot>
-                </span>
-            </div>
-        </div>
-    </template>
-
-    <template id="expand-card">
-        <style>
-            :host{
-                display: contents;
-            }
-        </style>
-        <link rel="stylesheet" href="style.css" />
-        <div class="card-item card-shadow card-hover card-collapse" onclick="toggleExpandCard(this)">
-            <div class="card-header">
-                <h3 class="card-header-title">
-                    <slot name="card-title">Card title</slot>
-                </h3>
-                <p class="card-header-info">Click to expand</p>
-            </div>
-            <div>
-                <span class="card-desc">
-                    <slot name="card-desc">
-                        Sample card description: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam rutrum fermentum ipsum, id ornare sem mattis id. Quisque sed dolor sit amet tellus condimentum iaculis. Quisque gravida laoreet sapien, nec euismod eros viverra eget. Phasellus sit amet rhoncus nibh. Sed non ipsum est. Nunc rutrum finibus massa quis semper. Duis nec neque cursus, ultrices tellus at, lacinia erat. Aenean at eros ligula. Fusce bibendum eu velit in molestie.
-                    </slot>
-                </span>
-            </div>
-        </div>
-    </template>
-
     <nav id="nav-bar" class="nav-bar">
         <div class="nav-left nav-container">
             <a class="nav-title nav-link" href="/">Kévin SPINICCI</a>
@@ -123,14 +76,48 @@
 
             <div class="card-list">
 
-                <div style="grid-column: 1 / span 2; grid-row: 1 / span 3;">
-                    <regular-card></regular-card>
+                <!-- First card -->
+                <div class="card-item card-shadow card-collapse" style="grid-column: 1 / span 2; grid-row: 1 / span 3;">
+                    <div class="card-header">
+                        <h3 class="card-header-title">
+                            Card title
+                        </h3>
+                    </div>
+                    <div>
+                        <span class="card-desc">
+                                Sample card description: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam rutrum fermentum ipsum, id ornare sem mattis id. Quisque sed dolor sit amet tellus condimentum iaculis. Quisque gravida laoreet sapien, nec euismod eros viverra eget. Phasellus sit amet rhoncus nibh. Sed non ipsum est. Nunc rutrum finibus massa quis semper. Duis nec neque cursus, ultrices tellus at, lacinia erat. Aenean at eros ligula. Fusce bibendum eu velit in molestie.
+                        </span>
+                    </div>
                 </div>
-                <div style="grid-column: 3 / span 1; grid-row: 1 / span 1;">
-                    <expand-card></expand-card>
+
+                <!-- Second card -->
+                <div class="card-item card-shadow card-hover card-collapse" onclick="toggleExpandCard(this)" style="grid-column: 3 / span 1; grid-row: 1 / span 1;">
+                    <div class="card-header">
+                        <h3 class="card-header-title">
+                            Card title
+                        </h3>
+                        <p class="card-header-info">Click to expand</p>
+                    </div>
+                    <div>
+                        <span class="card-desc">
+                            Sample card description: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam rutrum fermentum ipsum, id ornare sem mattis id. Quisque sed dolor sit amet tellus condimentum iaculis. Quisque gravida laoreet sapien, nec euismod eros viverra eget. Phasellus sit amet rhoncus nibh. Sed non ipsum est. Nunc rutrum finibus massa quis semper. Duis nec neque cursus, ultrices tellus at, lacinia erat. Aenean at eros ligula. Fusce bibendum eu velit in molestie.
+                        </span>
+                    </div>
                 </div>
-                <div style="grid-column: 3 / span 1; grid-row: 2 / span 2">
-                    <expand-card></expand-card>
+
+                <!-- Third card -->
+                <div class="card-item card-shadow card-hover card-collapse" onclick="toggleExpandCard(this)" style="grid-column: 3 / span 1; grid-row: 2 / span 2">
+                    <div class="card-header">
+                        <h3 class="card-header-title">
+                            Card title
+                        </h3>
+                        <p class="card-header-info">Click to expand</p>
+                    </div>
+                    <div>
+                        <span class="card-desc">
+                            Sample card description: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam rutrum fermentum ipsum, id ornare sem mattis id. Quisque sed dolor sit amet tellus condimentum iaculis. Quisque gravida laoreet sapien, nec euismod eros viverra eget. Phasellus sit amet rhoncus nibh. Sed non ipsum est. Nunc rutrum finibus massa quis semper. Duis nec neque cursus, ultrices tellus at, lacinia erat. Aenean at eros ligula. Fusce bibendum eu velit in molestie.
+                        </span>
+                    </div>
                 </div>
 
             </div>

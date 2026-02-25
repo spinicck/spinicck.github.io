@@ -83,35 +83,3 @@ function toggleExpandCard(e){
         e.style.transform = ""
     }
 }
-
-/**
- * Class to make reusable regular card components
- */
-class RegularCard extends HTMLElement {
-    constructor() {
-        super();
-        let template = document.getElementById("regular-card");
-        let templateContent = template.content;
-
-        const shadowRoot = this.attachShadow({ mode: "open" });
-        shadowRoot.appendChild(templateContent.cloneNode(true));
-    }
-}
-
-/**
- * Class to make reusable expandable card components
- */
-class ExpandCard extends HTMLElement {
-    constructor() {
-        super();
-        let template = document.getElementById("expand-card");
-        let templateContent = template.content;
-
-        const shadowRoot = this.attachShadow({ mode: "open" });
-        shadowRoot.appendChild(templateContent.cloneNode(true));
-    }
-}
-
-/* Define simple card html-tag */
-customElements.define("regular-card", RegularCard, );
-customElements.define("expand-card", ExpandCard, );
