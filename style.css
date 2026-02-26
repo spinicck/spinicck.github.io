@@ -286,18 +286,6 @@ body {
     color: var(--md-sys-color-tertiary);
 }
 
-.card-collapse {
-    transition: all 500ms ease-in-out;
-}
-
-.card-expand {
-    box-shadow: 0px 0px 8px var(--md-sys-color-secondary);
-    position: relative;
-    transform-origin: center;
-    transition: all 500ms ease-in-out;
-    z-index: 2;
-}
-
 .modal {
     display: none;
     position: fixed; /* Stay in place */
