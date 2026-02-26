@@ -299,7 +299,6 @@ body {
 }
 
 .modal {
-    view-transition-name: modal;
     display: none;
     position: fixed; /* Stay in place */
     z-index: 1; /* Sit on top */
@@ -319,9 +318,6 @@ body {
     overflow: auto; /* Enable scroll if needed */
 }
 
-::view-transition-group(modal) {
-  animation-duration: 500ms;
-}
 
 /* multi-classes selectors */
 /* insert here in case these are needed */
