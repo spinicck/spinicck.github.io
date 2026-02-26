@@ -59,80 +59,59 @@ function toggleLightDarkMode(){
     }
 }
 
-/**
- * Method to expand and collapse a card item.
- * @param {Element to expand/collapse} e 
- */
-function toggleExpandCard(e){
-    /* Compute center of viewport */
-    let centerX = window.innerWidth / 2
-    let centerY = window.innerHeight / 2
-    /* Compute center of current element */
-    let bbox = e.getBoundingClientRect()
-    let coordX = bbox.x + ( bbox.width / 2 )
-    let coordY = bbox.y + ( bbox.height / 2 )
-    /* Compute translation vector */
-    let transVectX = centerX - coordX
-    let transVectY = centerY - coordY
-    isCollapsed = e.classList.contains("card-collapse")
-    e.classList.toggle("card-collapse")
-    e.classList.toggle("card-expand")
-    console.debug(transVectX, " ", transVectY)
-    /* Switch icon and animate entrance */
-    let icon = e.getElementsByClassName("card-header-info")[0]
-    icon.classList.toggle("fa-minimize")
-    icon.classList.toggle("fa-expand")
-    icon.animate(
-        [
-            // From
-            { transform: "scale(0)", opacity: 0 },
-            { transform: "scale(1)", opacity: 1 }
-        ],
-        { duration: 400, iterations: 1 }
-    );
-    if ( isCollapsed ) {
-        e.style.transform = `translate(${transVectX}px, ${transVectY}px)`
-    } else {
-        e.style.transform = ""
-    }
-}
-
-
-async function openCard(e){
-    /* Compute center of viewport */
-    let centerX = window.innerWidth / 2
-    let centerY = window.innerHeight / 2
-    /* Compute center of current element */
-    let bbox = e.getBoundingClientRect()
-    let coordX = bbox.x + ( bbox.width / 2 )
-    let coordY = bbox.y + ( bbox.height / 2 )
-    /* Compute translation vector */
-    let transVectX = centerX - coordX
-    let transVectY = centerY - coordY
-    await e.animate(
-        [
-            // From
-            { transform: "translate(0,0)", opacity: 1 },
-            { transform: `translate(${transVectX}px, ${transVectY}px)`, opacity: 0 }
-        ],
-        { duration: 400, iterations: 1 }
-    ).finished
+function openCard(e){
+    /* For now duplicate the code when browser cannot handle transition API.
+     * If method become more complex, create dedicated function.
+     */
     currentOpenedCard = e
-    let modal = e.getElementsByTagName("modal-content")[0].cloneNode(true)
+    currentOpenedCard.style.viewTransitionName = "modal"
+    currentOpenedCard.style.filter = "blur(5px)"
+    /* Create modal for page transition */
+    let modal = currentOpenedCard.getElementsByTagName("modal-content")[0].cloneNode(true)
     modal.onclick = function(){
         closeCard()
     }
-    document.body.appendChild(modal)
-    modal.style.display = "flex"
     currentOpenedModal = modal
+
+    /* Fallback for browsers that don't support this API */
+    if (!document.startViewTransition) {
+        document.body.appendChild(modal)
+        modal.style.display = "flex"
+        return;
+    }
+
+    /* With a View Transition */
+    document.startViewTransition(() => {
+        document.body.appendChild(modal)
+        modal.style.display = "flex"
+        currentOpenedCard.style.viewTransitionName = ""
+        currentOpenedCard.style.filter = ""
+    });
 }
 
 function closeCard(){
+    /* For now duplicate the code when browser cannot handle transition API.
+     * If method become more complex, create dedicated function.
+     */
     console.debug(`currentOpenedModal: ${currentOpenedModal}`)
-    currentOpenedModal.style.display = "none"
-    currentOpenedModal.remove()
     console.debug(`currentOpenedCard: ${currentOpenedCard}`)
-    currentOpenedCard.style.transform = ""
-    currentOpenedModal = null
-    currentOpenedCard = null
+
+    /* Fallback for browsers that don't support this API */
+    if (!document.startViewTransition) {
+        currentOpenedModal.style.display = "none"
+        currentOpenedModal.remove()
+        currentOpenedCard.style.visibility = "visible"
+        currentOpenedModal = null
+        currentOpenedCard = null
+        return;
+    }
+
+    /* With a View Transition */
+    document.startViewTransition(() => {
+        currentOpenedModal.style.display = "none"
+        currentOpenedModal.remove()
+        currentOpenedCard.style.visibility = "visible"
+        currentOpenedModal = null
+        currentOpenedCard = null
+    });
 }

@@ -75,6 +75,7 @@ body {
 *******************************************************************************/
 /* css classes */
 .nav-bar{
+    view-transition-name: navbar;
     z-index: 999; /* ensure the nav-bar is on top of everything */
     position: sticky; /* Set the navbar to fixed position */    
     top: 0; /* Position the navbar at the top of the page */
@@ -298,6 +299,7 @@ body {
 }
 
 .modal {
+    view-transition-name: modal;
     display: none;
     position: fixed; /* Stay in place */
     z-index: 1; /* Sit on top */
@@ -315,6 +317,10 @@ body {
     max-width: 90%;
     max-height: 70%;
     overflow: auto; /* Enable scroll if needed */
+}
+
+::view-transition-group(modal) {
+  animation-duration: 500ms;
 }
 
 /* multi-classes selectors */
