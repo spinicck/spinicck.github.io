@@ -72,47 +72,58 @@ async function openCard(e) {
     /* Compute translation vector */
     let transVectX = centerX - coordX
     let transVectY = centerY - coordY
+    /* Make animation for card opening */
     let animation = await currentOpenedCard.animate(
-        { transform: `translate(${transVectX}px, ${transVectY}px)` },
-        { duration: 400, fill: "forwards" }
+        {
+            transform: `translate(${transVectX}px, ${transVectY}px) scale(1.5)`,
+            filter: "blur(15px)",
+        },
+        { duration: 100, fill: "forwards" }
     ).finished
     animation.commitStyles()
     animation.cancel()
+    /* Make modal */
     currentOpenedModal = currentOpenedCard.getElementsByTagName("modal-content")[0].cloneNode(true)
     currentOpenedModal.style.display = "flex"
     currentOpenedModal.onclick = closeModal
     document.body.appendChild(currentOpenedModal)
+    /* Animate modal opening */
     animation = await currentOpenedModal.animate(
         [
-            { opacity: 0, transform: "scale(0)" },
-            { opacity: 1, transform: "scale(1)" }
+            { filter: "blur(15px)", opacity: 0, transform: "scale(0.4)" },
+            { filter: "blur(0px)", opacity: 1, transform: "scale(1)" }
         ],
-        { duration: 400, fill: "forwards" }
+        { duration: 100, fill: "forwards" }
     ).finished
     animation.commitStyles()
     animation.cancel()
 }
 
 async function closeModal() {
-    console.debug("Close Modal")
+    /* Animation modal closing */
     let animation = await currentOpenedModal.animate(
         [
             { opacity: 1, transform: "scale(1)" },
             { opacity: 0, transform: "scale(0)" }
         ],
-        { duration: 400, fill: "forwards" }
+        { duration: 100, fill: "forwards" }
     ).finished
     animation.commitStyles()
     animation.cancel()
+    /* Hide modal and remove from DOM */
     currentOpenedModal.style.display = "none"
     currentOpenedModal.remove()
     currentOpenedModal = null
-
+    /* Animate card minimizing */
     animation = await currentOpenedCard.animate(
-        { transform: "translate(0)" },
-        { duration: 400, fill: "forwards" }
+        { 
+            transform: "translate(0) scale(1)",
+            filter: "blur(0px)",
+        },
+        { duration: 100, fill: "forwards" }
     ).finished
     animation.commitStyles()
     animation.cancel()
+    /* Empty current Opened card */
     currentOpenedCard = null
 }
