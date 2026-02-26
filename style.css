@@ -5,7 +5,7 @@
 /* css classes */
 html{
     font-family: "Roboto", sans-serif, Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
-    font-size: 12pt;
+    font-size: 16px;
     color: var(--md-sys-color-on-background);
     background-color: var(--md-sys-color-background);
 }
@@ -41,22 +41,42 @@ body {
     box-shadow: 4px 4px 8px var(--md-sys-color-shadow);
 }
 
+.from-bottom {
+    transform: translateY(10%);
+}
+
 .material-icons.md-18 { font-size: 18px; }
 .material-icons.md-24 { font-size: 24px; }
 .material-icons.md-36 { font-size: 36px; }
 .material-icons.md-48 { font-size: 48px; }
 
 /* multi-classes selectors */
-/* insert here in case these are needed */
+.show-on-scroll.hidden {
+    opacity: 0;
+    filter: blur(2px);
+    transition: all 1s ease-in-out;
+}
 
+.show-on-scroll.show {
+    opacity: 1;
+    filter: blur(0px);
+    transform: translateX(0);
+    transform: translateY(0);
+}
 /* dynamic and state rules (hover, active, ...) */
-/* insert here in case these are needed */
+@media(prefers-reduced-motion) {
+    .show-on-scroll.hidden {
+        transition: none;
+    }
+}
 
 /*******************************************************************************
 * Nav-bar
 *******************************************************************************/
 /* css classes */
 .nav-bar{
+    view-transition-name: navbar;
+    z-index: 999; /* ensure the nav-bar is on top of everything */
     position: sticky; /* Set the navbar to fixed position */    
     top: 0; /* Position the navbar at the top of the page */
     padding: 2vw 2vw 1vw 1vw;
@@ -66,17 +86,22 @@ body {
     gap: 1em;
     align-items: center;
     background: var(--md-sys-color-primary);
+    height: 5vh;
+    transition: 100ms ease-in;
 }
 
-.nav-main {
+.nav-container {
+    list-style: none;
     display: flex;
+    padding: 5px;
+    margin: 0;
+    height: inherit;
+    justify-items: center;
     align-items: center;
 }
 
-.nav-left, .nav-main, .nav-right {
-    height: inherit;
-    justify-content: center;
-    align-content: center;
+.nav-main {
+    gap: 15px;
 }
 
 .nav-link {
@@ -84,14 +109,19 @@ body {
 }
 
 .nav-title {
-    font-size: 1.4rem;
+    font-size: 1.2rem;
 }
 
 .nav-button{
     border: none;
     cursor: pointer;
     background: none;
-    border-radius: 100%;
+}
+
+.nav-right {
+    padding: 0;
+    margin: 0;
+    height: 100%;
 }
 
 /* multi-classes selectors */
@@ -100,7 +130,7 @@ body {
     text-decoration: none;
 }
 
-.nav-main .nav-link{
+.nav-container .nav-link{
     display: inline-block;
     text-align: center;
     border-radius: 5px;
@@ -112,9 +142,9 @@ body {
     flex-grow: 2;
 }
 
-.nav-button:hover{
-    color: var(--md-sys-color-on-primary-container);
-    background-color: var(--md-sys-color-primary-container);
+.nav-button:hover, .nav-link:hover{
+    transition: 100ms ease-in-out;
+    scale: 1.2;
 }
 
 .nav-link:hover{
@@ -122,21 +152,32 @@ body {
     background-color: var(--md-sys-color-primary-container);
 }
 
-.nav-bar .nav-button:last-child {display: none;}
+.nav-left .nav-button {display: none;}
 
-@media screen and (max-width: 800px){
-    .nav-bar .nav-link { display: none; }
-    .nav-bar .nav-button:not(:last-child) { display: none; }
-    .nav-bar .nav-button:last-child { display: block; }
+@media screen and (max-width: 600px){
+    .nav-main, .nav-right { display: none; font-size: 1.5rem;}
+    .nav-left .nav-button { display: block; }
 
-    .nav-bar.nav-bar.compact {
+    .nav-bar.compact {
         display: flex;
         flex-flow: column;
+        height: 60vh;
+    }
+
+    .nav-left {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        width: 100%; 
     }
 
     .nav-bar.compact .nav-main{
         display: flex;
         flex-flow: column;
+    }
+
+    .nav-bar.compact .nav-right{
+        display: flex;
     }
 
     .nav-bar.compact .nav-link{
@@ -156,8 +197,6 @@ body {
     display: grid;
     grid-template-columns: 6fr 4fr;
     column-gap: 5px 50px;
-    background: var(--md-sys-color-primary);
-    color: var(--md-sys-color-on-primary);
     border-radius: 25px;
     padding: 15px 15px 15px 15px;
 }
@@ -165,6 +204,7 @@ body {
 .aboutme-main {
     padding: 6px;
     padding-right: 12px;
+    font-size: 1.2rem;
 }
 
 .aboutme-right {
@@ -173,7 +213,8 @@ body {
 }
 
 .aboutme-title {
-    color: var(--md-sys-color-on-primary);
+    color: var(--md-sys-color-primary);
+    font-size: 4rem;
 }
 
 /* Used in html, use this for styling the description in 'aboutme' */
@@ -181,109 +222,106 @@ body {
 
 .aboutme-picture {
     border-radius: 100%;
+    max-width: 100%;
+    height: auto;
 }
 
 /* multi-classes selectors */
 /* insert here in case these are needed */
 
 /* dynamic and state rules (hover, active, ...) */
-.aboutme > div:nth-child(1) {
-    flex-grow: 2;
+@media screen and (max-width: 1000px) {
+    .aboutme {
+        display: flex;
+        flex-flow: column;
+        align-items: center;
+        justify-items: center;
+        gap: 10px;
+    }
+    .aboutme-main, .aboutme-right {
+        width: 100%;
+    }
+    .aboutme-right {
+        justify-content: center;
+    }
 }
 
 /*******************************************************************************
-* Research
+* Card items
 *******************************************************************************/
 /* css classes */
-.background-list {
-    display: flex;
-    flex-flow: column;
-    row-gap: 25px;
-}
-.background-item {
-    padding: 15px 15px 15px 15px;
-    background-color: var(--md-sys-color-surface-bright);
-    color: var(--md-sys-color-on-surface-container);
-    display: flex;
-    flex-flow: column;
-    row-gap: 10px;
-}
-.job-info {
-    display: block;
-}
-.job-date {
-    float: left;
-}
-.job-location {
-    float: right;
+.card-shadow {
+    box-shadow: 0px 0px 8px -5px var(--md-sys-color-shadow);
 }
 
-.interest-list {
-    display: flex;
-    flex-flow: row;
-    flex-wrap: wrap;
-    align-items: center;
-    justify-content: center;
-    gap: 50px;
+.card-list {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 15px;
+    padding: 2vw 2vh;
 }
 
-.interest-item {
+.card-item {
     display: flex;
     flex-flow: column;
     gap: 5px;
     padding: 15px 15px 15px 15px;
     border-radius: 15px;
-    max-width: 40%;
-    background-color: var(--md-sys-color-surface-bright);
+    background: var(--md-sys-color-surface-container-lowest);
     color: var(--md-sys-color-on-surface-container);
 }
 
-/* multi-classes selectors */
-.job-title, .interest-title {
-    color: var(--md-sys-color-tertiary);
-}
-
-.job-desc, .interest-desc {
-    display: inline;
-}
-
-
-/* dynamic and state rules (hover, active, ...) */
-/* insert here in case these are needed */
-
-/*******************************************************************************
-* Skills
-*******************************************************************************/
-/* css classes */
-.skill-list {
+.card-header {
     display: flex;
-    flex-flow: row;
-    flex-wrap: wrap;
     align-items: center;
-    justify-content: center;
-    gap: 50px;
+    justify-content: space-between;
 }
 
-.skill-item {
-    display: flex;
-    flex-flow: column;
-    gap: 5px;
-    padding: 15px 15px 15px 15px;
-    border-radius: 15px;
-    max-width: 40%;
-    background-color: var(--md-sys-color-surface-bright);
-    color: var(--md-sys-color-on-surface-container);
+.card-header-title {
+    color: var(--md-sys-color-on-background);
 }
 
-.skill-title {
+.card-header-info {
+    font-size: small;
     color: var(--md-sys-color-tertiary);
 }
+
+.modal {
+    display: none;
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    justify-content: center;
+    align-items: center;
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    background: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* Size content of the modal */
+.modal > div {
+    max-width: 90%;
+    max-height: 70%;
+    overflow: auto; /* Enable scroll if needed */
+}
+
 
 /* multi-classes selectors */
 /* insert here in case these are needed */
 
 /* dynamic and state rules (hover, active, ...) */
-/* insert here in case these are needed */
+.card-hover:hover .card-header-title {
+    color: var(--md-sys-color-primary);
+}
+
+.card-hover:hover .card-header-info {
+    color: var(--md-sys-color-secondary);
+}
+
+.card-item.card-hover:hover{
+    box-shadow: 0px 0px 8px var(--md-sys-color-primary);
+}
 
 /*******************************************************************************
 * Contact
@@ -293,7 +331,7 @@ body {
     display: flex;
     flex-flow: column;
     gap: 15px;
-    color: var(--md-sys-color-on-secondary-container);
+    color: var(--md-sys-color-on-surface-container);
     background-color: var(--md-sys-color-secondary-container);
     align-items: center;
     justify-content: center;
@@ -310,7 +348,7 @@ body {
 
 /* multi-classes selectors */
 .contact-list a {
-    color: var(--md-sys-color-on-secondary-container);
+    color: var(--md-sys-color-on-surface-container);
     text-decoration: none;
     padding: 15px 15px 15px 15px;
     border-radius: 15px;
