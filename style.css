@@ -306,6 +306,16 @@ body {
     overflow: auto; /* Enable scroll if needed */
 }
 
+.dev-language-list {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.dev-language-list img {
+    width: 48px;
+}
+
 
 /* multi-classes selectors */
 /* insert here in case these are needed */

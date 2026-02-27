@@ -20,11 +20,11 @@
         <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
         <script defer src="main.js"></script> 
         <!-- Font Awesome icons -->
-        <link href="assets/fontawesome/fontawesome-free-7.0.1-web/css/fontawesome.css" rel="stylesheet" />
-        <link href="assets/fontawesome/fontawesome-free-7.0.1-web/css/brands.css" rel="stylesheet" />
-        <link href="assets/fontawesome/fontawesome-free-7.0.1-web/css/solid.css" rel="stylesheet" />
-        <link href="assets/fontawesome/fontawesome-free-7.0.1-web/css/sharp-thin.css" rel="stylesheet" />
-        <link href="assets/fontawesome/fontawesome-free-7.0.1-web/css/sharp-duotone-thin.css" rel="stylesheet" />
+        <link href="/assets/fontawesome/css/fontawesome.css" rel="stylesheet" />
+        <link href="/assets/fontawesome/css/brands.css" rel="stylesheet" />
+        <link href="/assets/fontawesome/css/solid.css" rel="stylesheet" />
+        <link href="/assets/fontawesome/css/sharp-thin.css" rel="stylesheet" />
+        <link href="/assets/fontawesome/css/sharp-duotone-thin.css" rel="stylesheet" />
     </head>
 
     <template id="regular-card">
@@ -39,13 +39,9 @@
                 <slot name="card-title">Card title</slot>
             </h3>
         </div>
-        <div>
-            <span class="card-desc">
-                <slot name="card-desc">
-                    Sample card description
-                </slot>
-            </span>
-        </div>
+        <slot name="card-desc">
+            Sample card description
+        </slot>
     </template>
 
     <template id="expand-card">
@@ -56,11 +52,11 @@
         </style>
         <link rel="stylesheet" href="style.css" />
         <!-- Font Awesome icons -->
-        <link href="assets/fontawesome/fontawesome-free-7.0.1-web/css/fontawesome.css" rel="stylesheet" />
-        <link href="assets/fontawesome/fontawesome-free-7.0.1-web/css/brands.css" rel="stylesheet" />
-        <link href="assets/fontawesome/fontawesome-free-7.0.1-web/css/solid.css" rel="stylesheet" />
-        <link href="assets/fontawesome/fontawesome-free-7.0.1-web/css/sharp-thin.css" rel="stylesheet" />
-        <link href="assets/fontawesome/fontawesome-free-7.0.1-web/css/sharp-duotone-thin.css" rel="stylesheet" />
+        <link href="/assets/fontawesome/css/fontawesome.css" rel="stylesheet" />
+        <link href="/assets/fontawesome/css/brands.css" rel="stylesheet" />
+        <link href="/assets/fontawesome/css/solid.css" rel="stylesheet" />
+        <link href="/assets/fontawesome/css/sharp-thin.css" rel="stylesheet" />
+        <link href="/assets/fontawesome/css/sharp-duotone-thin.css" rel="stylesheet" />
         <div class="card-header">
             <h3 class="card-header-title">
                 <slot name="card-title">Card title</slot>
@@ -68,11 +64,9 @@
             <i class="card-header-info fa-solid fa-expand"></i>
         </div>
         <div>
-            <span class="card-desc">
-                <slot name="card-desc">
-                    Sample card description
-                </slot>
-            </span>
+            <slot name="card-desc">
+                Sample card description
+            </slot>
         </div>
     </template>
 
@@ -84,11 +78,11 @@
         </style>
         <link rel="stylesheet" href="style.css" />
         <!-- Font Awesome icons -->
-        <link href="assets/fontawesome/fontawesome-free-7.0.1-web/css/fontawesome.css" rel="stylesheet" />
-        <link href="assets/fontawesome/fontawesome-free-7.0.1-web/css/brands.css" rel="stylesheet" />
-        <link href="assets/fontawesome/fontawesome-free-7.0.1-web/css/solid.css" rel="stylesheet" />
-        <link href="assets/fontawesome/fontawesome-free-7.0.1-web/css/sharp-thin.css" rel="stylesheet" />
-        <link href="assets/fontawesome/fontawesome-free-7.0.1-web/css/sharp-duotone-thin.css" rel="stylesheet" />
+        <link href="/assets/fontawesome/css/fontawesome.css" rel="stylesheet" />
+        <link href="/assets/fontawesome/css/brands.css" rel="stylesheet" />
+        <link href="/assets/fontawesome/css/solid.css" rel="stylesheet" />
+        <link href="/assets/fontawesome/css/sharp-thin.css" rel="stylesheet" />
+        <link href="/assets/fontawesome/css/sharp-duotone-thin.css" rel="stylesheet" />
         <div class="card-item card-hover modal-card">
             <div class="card-header">
                 <h3 class="card-header-title">
@@ -98,13 +92,9 @@
                 </h3>
                 <i class="card-header-info fa-solid fa-minimize"></i>
             </div>
-            <div>
-                <span class="card-desc">
-                    <slot name="modal-content">
-                        Modal content
-                    </slot>
-                </span>
-            </div>
+            <slot name="modal-content">
+                Modal content
+            </slot>
         </div>
     </template>
 
@@ -139,9 +129,9 @@
         <section id="aboutme" class="body-section show-on-scroll hidden from-bottom">
             <div class="aboutme">
                 <div class="aboutme-main">
-                    <h1 class="aboutme-title">About me</h1>
+                    <h1 class="aboutme-title">Hi, I'm Kévin ! </h1>
                     <span class="aboutme-description">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus vehicula, mauris nec hendrerit euismod, mi enim viverra justo, nec auctor libero velit et leo. Sed ac vulputate mauris. Sed sagittis hendrerit tortor eget facilisis. Praesent tincidunt ut sapien vitae vulputate. In gravida aliquam massa, ac bibendum ipsum feugiat non. Integer risus tellus, tristique sed risus a, semper eleifend magna. Donec rutrum ultrices enim vel mattis. Phasellus lacinia vehicula molestie.
+                        Hi I am Kévin, a computational biologist who likes to use mathematical and statistcal tools to study biological systems. I use mathematical modelling to describe growth of tumour influenced by cellular metabolism and extracellular remodelling operated by the cell. Furthermore, I applied statistical tools to study transcriptomic data aiming to search for deregulated processes within a cell population. In the future, I would like to developp and implement my own workflows and method to unravel the cellular dynamic and heterogeneity.
                     </span>
                 </div>
                 <div class="aboutme-right">
@@ -158,59 +148,83 @@
             <div class="card-list">
 
                 <!-- First card -->
-                <regular-card
-                    class="card-item card-shadow"
-                    style="grid-column: 1 / span 2; grid-row: 1 / span 3;"
-                    >
-                    <p slot="card-title">A new title</p>
-                    <p slot="card-desc">A new description.</p>
-                </regular-card>
-
-                <!-- Second card -->
                 <expand-card
                     class="card-item card-shadow card-hover"
-                    onclick="openCard(this, 'modal-lorem-ipsum')"
-                    style="grid-column: 3 / span 1; grid-row: 1 / span 1;"
+                    style="grid-row: span 2; grid-column: span 2;"
+                    onclick="openCard(this, 'modal-gbm-growth')"
                     >
+                    <p slot="card-title">Agent-Based Modelling of glioblastoma cell growth</p>
+                    <div slot="card-desc" style="display: flex; align-items: center; gap: 36px;">
+                        <span>
+                            While cells rely mainly on oxidative processes to generate their energy, cancer cells have been to have increased usage of glycolysis leading to increased glucose consumption and lower pH. This behaviour has been observed in normoxia and was called the Warburg effect. Through mathematical modelling of tumour growth, I showed that both oxygen fluctuations and genetic regulation may trigger the appearance of a Warburg phenotype in model.
+                        </span>
+                        <img src="assets/img/res_gbm_growth.png" width="256px" alt="Results of tumour growth model.">
+                    </div>
                 </expand-card>
 
+                <!-- Second card -->
+                <regular-card
+                    class="card-item card-shadow"
+                    >
+                    <p slot="card-title">Scientific calculus</p>
+                    <div slot="card-desc" class="dev-language-list">
+                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/r/r-original.svg" />
+                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/julia/julia-original-wordmark.svg" />
+                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/python/python-original-wordmark.svg" />
+                        <img src="assets/icons/Scanpy_Logo_BrightFG.svg" />
+                        <img src="assets/icons/SeuratV5.png" />
+                    </div>
+                </regular-card>
+                <regular-card
+                    class="card-item card-shadow"
+                    >
+                    <p slot="card-title">Development</p>
+                    <div slot="card-desc" class="dev-language-list">
+                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/git/git-plain-wordmark.svg" />
+                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/cplusplus/cplusplus-original.svg" />
+                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/java/java-original.svg" />
+                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/javascript/javascript-original.svg" />
+                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/html5/html5-original.svg" />
+                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/css3/css3-original.svg" />
+                    </div>
+                </regular-card>
+
                 <!-- Third card -->
+                <regular-card
+                    class="card-item card-shadow"
+                    >
+                    <p slot="card-title">Want to see me present ?</p>
+                    <div slot="card-desc" style="display: flex; align-items: center; justify-content: center;">
+                        <iframe width="440" height="280" src="https://www.youtube.com/embed/HpJxrjWVUL8?si=NZzbR2i5av9TBN67" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                    </div>
+                </regular-card>
+
                 <expand-card
                     class="card-item card-shadow card-hover"
-                    onclick="openCard(this, 'modal-simple')"
-                    style="grid-column: 3 / span 1; grid-row: 2 / span 2"
+                    style="grid-column: span 2;"
+                    onclick="openCard(this, 'modal-umap-scrnaseq')"
                     >
-                    <div slot="card-title">The third card !!</div>
-                    <div slot="card-desc">
-                        <span>This one has to be different for testing purposes.</span>
-                        <span>This one has to be different for testing purposes.</span>
-                        <div style="background: red;">
-                            A nested card
-                        </div>
+                    <p slot="card-title">Statistical data analysis of bulk and single-cell transcriptomic data</p>
+                    <div slot="card-desc" style="display: flex; align-items: center; gap: 36px;">
+                        <img src="assets/img/umap_scrnaseq.png" width="256px" alt="Results of tumour growth model.">
+                        <span>
+                            Transcriptomic data are widely used to detect differences between gene expression pattern between two factors. This standard analysis has a wide vareiety of application including finding targets for disease treatment or merely assessing cell-types in a cell population. I applied differential expression analysis and pathway enrichment to determine the frequently deregulated pathways in glioblastoma bulk RNA data. Using methods for single-cell, such as Seurat and scanpy, I assessed the batch effect in data with the goal of correcting this biais and searched for markers to identify cell-types in different cells clusters.
+                        </span>
                     </div>
                 </expand-card>
 
             </div>
 
-            <modal-card class="modal" id="modal-simple">
-                <p slot="modal-title">A simple text</p>
-                <div slot="modal-content">
-                    A simple content for my <p style="display: inline; font-size: large; font-family: Arial, Helvetica, sans-serif; font-style: italic; color: steelblue;">beautiful</p> modal.
-                </div>
+            <modal-card class="modal" id="modal-gbm-growth">
+                <p slot="modal-title"></p>
+                <img slot="modal-content" style="width: 100%; height: 100%; object-fit: contain;" src="assets/img/res_gbm_growth.png" alt="Results of tumour growth model.">
             </modal-card>
-            <modal-card class="modal" id="modal-lorem-ipsum">
-                <p slot="modal-title">A new title for my beautiful modal</p>
-                <div slot="modal-content">
-                    <p style="font-size: large; color: steelblue;">The standard Lorem Ipsum passage, used since the 1500s</p>
-                    <span style="border-left: solid steelblue;">
-                        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
-                    </span>
-                    <p style="font-size: large; color: steelblue;">Section 1.10.32 of "de Finibus Bonorum et Malorum", written by Cicero in 45 BC</p>
-                    <span style="border-left: solid steelblue;">
-                        "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?"
-                    </span>
-                </div>
+
+            <modal-card class="modal" id="modal-umap-scrnaseq">
+                <p slot="modal-title"></p>
+                <img slot="modal-content" style="width: 100%; height: 100%; object-fit: contain;" src="assets/img/umap_scrnaseq.png" alt="Results of tumour growth model.">
             </modal-card>
+
         </section>
 
         <section id="contact" class="body-section">
