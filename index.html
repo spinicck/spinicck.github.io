@@ -27,6 +27,87 @@
         <link href="assets/fontawesome/fontawesome-free-7.0.1-web/css/sharp-duotone-thin.css" rel="stylesheet" />
     </head>
 
+    <template id="regular-card">
+        <style>
+            :host{
+                display: contents;
+            }
+        </style>
+        <link rel="stylesheet" href="style.css" />
+        <div class="card-header">
+            <h3 class="card-header-title">
+                <slot name="card-title">Card title</slot>
+            </h3>
+        </div>
+        <div>
+            <span class="card-desc">
+                <slot name="card-desc">
+                    Sample card description
+                </slot>
+            </span>
+        </div>
+    </template>
+
+    <template id="expand-card">
+        <style>
+            :host{
+                display: contents;
+            }
+        </style>
+        <link rel="stylesheet" href="style.css" />
+        <!-- Font Awesome icons -->
+        <link href="assets/fontawesome/fontawesome-free-7.0.1-web/css/fontawesome.css" rel="stylesheet" />
+        <link href="assets/fontawesome/fontawesome-free-7.0.1-web/css/brands.css" rel="stylesheet" />
+        <link href="assets/fontawesome/fontawesome-free-7.0.1-web/css/solid.css" rel="stylesheet" />
+        <link href="assets/fontawesome/fontawesome-free-7.0.1-web/css/sharp-thin.css" rel="stylesheet" />
+        <link href="assets/fontawesome/fontawesome-free-7.0.1-web/css/sharp-duotone-thin.css" rel="stylesheet" />
+        <div class="card-header">
+            <h3 class="card-header-title">
+                <slot name="card-title">Card title</slot>
+            </h3>
+            <i class="card-header-info fa-solid fa-expand"></i>
+        </div>
+        <div>
+            <span class="card-desc">
+                <slot name="card-desc">
+                    Sample card description
+                </slot>
+            </span>
+        </div>
+    </template>
+
+    <template id="modal-card">
+        <style>
+            :host{
+                display: contents;
+            }
+        </style>
+        <link rel="stylesheet" href="style.css" />
+        <!-- Font Awesome icons -->
+        <link href="assets/fontawesome/fontawesome-free-7.0.1-web/css/fontawesome.css" rel="stylesheet" />
+        <link href="assets/fontawesome/fontawesome-free-7.0.1-web/css/brands.css" rel="stylesheet" />
+        <link href="assets/fontawesome/fontawesome-free-7.0.1-web/css/solid.css" rel="stylesheet" />
+        <link href="assets/fontawesome/fontawesome-free-7.0.1-web/css/sharp-thin.css" rel="stylesheet" />
+        <link href="assets/fontawesome/fontawesome-free-7.0.1-web/css/sharp-duotone-thin.css" rel="stylesheet" />
+        <div class="card-item card-hover modal-card">
+            <div class="card-header">
+                <h3 class="card-header-title">
+                    <slot name="modal-title">
+                        Modal title
+                    </slot>
+                </h3>
+                <i class="card-header-info fa-solid fa-minimize"></i>
+            </div>
+            <div>
+                <span class="card-desc">
+                    <slot name="modal-content">
+                        Modal content
+                    </slot>
+                </span>
+            </div>
+        </div>
+    </template>
+
     <nav id="nav-bar" class="nav-bar">
         <div class="nav-left nav-container">
             <a class="nav-title nav-link" href="/">Kévin SPINICCI</a>
@@ -77,111 +158,59 @@
             <div class="card-list">
 
                 <!-- First card -->
-                <div class="card-item card-shadow" style="grid-column: 1 / span 2; grid-row: 1 / span 3;">
-                    <div class="card-header">
-                        <h3 class="card-header-title">
-                            Card title
-                        </h3>
-                    </div>
-                    <div>
-                        <span class="card-desc">
-                                Sample card description: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam rutrum fermentum ipsum, id ornare sem mattis id. Quisque sed dolor sit amet tellus condimentum iaculis. Quisque gravida laoreet sapien, nec euismod eros viverra eget. Phasellus sit amet rhoncus nibh. Sed non ipsum est. Nunc rutrum finibus massa quis semper. Duis nec neque cursus, ultrices tellus at, lacinia erat. Aenean at eros ligula. Fusce bibendum eu velit in molestie.
-                        </span>
-                    </div>
-                </div>
+                <regular-card
+                    class="card-item card-shadow"
+                    style="grid-column: 1 / span 2; grid-row: 1 / span 3;"
+                    >
+                    <p slot="card-title">A new title</p>
+                    <p slot="card-desc">A new description.</p>
+                </regular-card>
 
                 <!-- Second card -->
-                <div class="card-item card-shadow card-hover" onclick="openCard(this)" style="grid-column: 3 / span 1; grid-row: 1 / span 1;">
-                    <div class="card-header">
-                        <h3 class="card-header-title">
-                            Card title
-                        </h3>
-                        <i class="card-header-info fa-solid fa-expand"></i>
-                    </div>
-                    <div>
-                        <span class="card-desc">
-                            Sample card description: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam rutrum fermentum ipsum, id ornare sem mattis id. Quisque sed dolor sit amet tellus condimentum iaculis. Quisque gravida laoreet sapien, nec euismod eros viverra eget. Phasellus sit amet rhoncus nibh. Sed non ipsum est. Nunc rutrum finibus massa quis semper. Duis nec neque cursus, ultrices tellus at, lacinia erat. Aenean at eros ligula. Fusce bibendum eu velit in molestie.
-                        </span>
-                    </div>
-                    <modal-content class="modal">
-                        <div class="card-item card-hover">
-                            <div class="card-header">
-                                <h3 class="card-header-title">
-                                    Card title
-                                </h3>
-                                <i class="card-header-info fa-solid fa-minimize"></i>
-                            </div>
-                            <div>
-                                <span class="card-desc">
-                                        Sample card description: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam rutrum fermentum ipsum, id ornare sem mattis id. Quisque sed dolor sit amet tellus condimentum iaculis. Quisque gravida laoreet sapien, nec euismod eros viverra eget. Phasellus sit amet rhoncus nibh. Sed non ipsum est. Nunc rutrum finibus massa quis semper. Duis nec neque cursus, ultrices tellus at, lacinia erat. Aenean at eros ligula. Fusce bibendum eu velit in molestie.
-                                        Sample card description: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam rutrum fermentum ipsum, id ornare sem mattis id. Quisque sed dolor sit amet tellus condimentum iaculis. Quisque gravida laoreet sapien, nec euismod eros viverra eget. Phasellus sit amet rhoncus nibh. Sed non ipsum est. Nunc rutrum finibus massa quis semper. Duis nec neque cursus, ultrices tellus at, lacinia erat. Aenean at eros ligula. Fusce bibendum eu velit in molestie.
-                                        Sample card description: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam rutrum fermentum ipsum, id ornare sem mattis id. Quisque sed dolor sit amet tellus condimentum iaculis. Quisque gravida laoreet sapien, nec euismod eros viverra eget. Phasellus sit amet rhoncus nibh. Sed non ipsum est. Nunc rutrum finibus massa quis semper. Duis nec neque cursus, ultrices tellus at, lacinia erat. Aenean at eros ligula. Fusce bibendum eu velit in molestie.
-                                        Sample card description: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam rutrum fermentum ipsum, id ornare sem mattis id. Quisque sed dolor sit amet tellus condimentum iaculis. Quisque gravida laoreet sapien, nec euismod eros viverra eget. Phasellus sit amet rhoncus nibh. Sed non ipsum est. Nunc rutrum finibus massa quis semper. Duis nec neque cursus, ultrices tellus at, lacinia erat. Aenean at eros ligula. Fusce bibendum eu velit in molestie.
-                                        Sample card description: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam rutrum fermentum ipsum, id ornare sem mattis id. Quisque sed dolor sit amet tellus condimentum iaculis. Quisque gravida laoreet sapien, nec euismod eros viverra eget. Phasellus sit amet rhoncus nibh. Sed non ipsum est. Nunc rutrum finibus massa quis semper. Duis nec neque cursus, ultrices tellus at, lacinia erat. Aenean at eros ligula. Fusce bibendum eu velit in molestie.
-                                        Sample card description: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam rutrum fermentum ipsum, id ornare sem mattis id. Quisque sed dolor sit amet tellus condimentum iaculis. Quisque gravida laoreet sapien, nec euismod eros viverra eget. Phasellus sit amet rhoncus nibh. Sed non ipsum est. Nunc rutrum finibus massa quis semper. Duis nec neque cursus, ultrices tellus at, lacinia erat. Aenean at eros ligula. Fusce bibendum eu velit in molestie.
-                                        Sample card description: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam rutrum fermentum ipsum, id ornare sem mattis id. Quisque sed dolor sit amet tellus condimentum iaculis. Quisque gravida laoreet sapien, nec euismod eros viverra eget. Phasellus sit amet rhoncus nibh. Sed non ipsum est. Nunc rutrum finibus massa quis semper. Duis nec neque cursus, ultrices tellus at, lacinia erat. Aenean at eros ligula. Fusce bibendum eu velit in molestie.
-                                        Sample card description: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam rutrum fermentum ipsum, id ornare sem mattis id. Quisque sed dolor sit amet tellus condimentum iaculis. Quisque gravida laoreet sapien, nec euismod eros viverra eget. Phasellus sit amet rhoncus nibh. Sed non ipsum est. Nunc rutrum finibus massa quis semper. Duis nec neque cursus, ultrices tellus at, lacinia erat. Aenean at eros ligula. Fusce bibendum eu velit in molestie.
-                                        Sample card description: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam rutrum fermentum ipsum, id ornare sem mattis id. Quisque sed dolor sit amet tellus condimentum iaculis. Quisque gravida laoreet sapien, nec euismod eros viverra eget. Phasellus sit amet rhoncus nibh. Sed non ipsum est. Nunc rutrum finibus massa quis semper. Duis nec neque cursus, ultrices tellus at, lacinia erat. Aenean at eros ligula. Fusce bibendum eu velit in molestie.
-                                        Sample card description: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam rutrum fermentum ipsum, id ornare sem mattis id. Quisque sed dolor sit amet tellus condimentum iaculis. Quisque gravida laoreet sapien, nec euismod eros viverra eget. Phasellus sit amet rhoncus nibh. Sed non ipsum est. Nunc rutrum finibus massa quis semper. Duis nec neque cursus, ultrices tellus at, lacinia erat. Aenean at eros ligula. Fusce bibendum eu velit in molestie.
-                                        Sample card description: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam rutrum fermentum ipsum, id ornare sem mattis id. Quisque sed dolor sit amet tellus condimentum iaculis. Quisque gravida laoreet sapien, nec euismod eros viverra eget. Phasellus sit amet rhoncus nibh. Sed non ipsum est. Nunc rutrum finibus massa quis semper. Duis nec neque cursus, ultrices tellus at, lacinia erat. Aenean at eros ligula. Fusce bibendum eu velit in molestie.
-                                        Sample card description: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam rutrum fermentum ipsum, id ornare sem mattis id. Quisque sed dolor sit amet tellus condimentum iaculis. Quisque gravida laoreet sapien, nec euismod eros viverra eget. Phasellus sit amet rhoncus nibh. Sed non ipsum est. Nunc rutrum finibus massa quis semper. Duis nec neque cursus, ultrices tellus at, lacinia erat. Aenean at eros ligula. Fusce bibendum eu velit in molestie.
-                                        Sample card description: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam rutrum fermentum ipsum, id ornare sem mattis id. Quisque sed dolor sit amet tellus condimentum iaculis. Quisque gravida laoreet sapien, nec euismod eros viverra eget. Phasellus sit amet rhoncus nibh. Sed non ipsum est. Nunc rutrum finibus massa quis semper. Duis nec neque cursus, ultrices tellus at, lacinia erat. Aenean at eros ligula. Fusce bibendum eu velit in molestie.
-                                        Sample card description: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam rutrum fermentum ipsum, id ornare sem mattis id. Quisque sed dolor sit amet tellus condimentum iaculis. Quisque gravida laoreet sapien, nec euismod eros viverra eget. Phasellus sit amet rhoncus nibh. Sed non ipsum est. Nunc rutrum finibus massa quis semper. Duis nec neque cursus, ultrices tellus at, lacinia erat. Aenean at eros ligula. Fusce bibendum eu velit in molestie.
-                                        Sample card description: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam rutrum fermentum ipsum, id ornare sem mattis id. Quisque sed dolor sit amet tellus condimentum iaculis. Quisque gravida laoreet sapien, nec euismod eros viverra eget. Phasellus sit amet rhoncus nibh. Sed non ipsum est. Nunc rutrum finibus massa quis semper. Duis nec neque cursus, ultrices tellus at, lacinia erat. Aenean at eros ligula. Fusce bibendum eu velit in molestie.
-                                        Sample card description: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam rutrum fermentum ipsum, id ornare sem mattis id. Quisque sed dolor sit amet tellus condimentum iaculis. Quisque gravida laoreet sapien, nec euismod eros viverra eget. Phasellus sit amet rhoncus nibh. Sed non ipsum est. Nunc rutrum finibus massa quis semper. Duis nec neque cursus, ultrices tellus at, lacinia erat. Aenean at eros ligula. Fusce bibendum eu velit in molestie.
-                                </span>
-                            </div>
-                        </div>
-                    </modal-content>
-                </div>
+                <expand-card
+                    class="card-item card-shadow card-hover"
+                    onclick="openCard(this, 'modal-lorem-ipsum')"
+                    style="grid-column: 3 / span 1; grid-row: 1 / span 1;"
+                    >
+                </expand-card>
 
                 <!-- Third card -->
-                <div class="card-item card-shadow card-hover" onclick="openCard(this)" style="grid-column: 3 / span 1; grid-row: 2 / span 2">
-                    <div class="card-header">
-                        <h3 class="card-header-title">
-                            Card title
-                        </h3>
-                        <i class="card-header-info fa-solid fa-expand"></i>
-                    </div>
-                    <div>
-                        <span class="card-desc">
-                            Sample card description: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam rutrum fermentum ipsum, id ornare sem mattis id. Quisque sed dolor sit amet tellus condimentum iaculis. Quisque gravida laoreet sapien, nec euismod eros viverra eget. Phasellus sit amet rhoncus nibh. Sed non ipsum est. Nunc rutrum finibus massa quis semper. Duis nec neque cursus, ultrices tellus at, lacinia erat. Aenean at eros ligula. Fusce bibendum eu velit in molestie.
-                        </span>
-                    </div>
-                    <modal-content class="modal">
-                        <div class="card-item card-hover">
-                            <div class="card-header">
-                                <h3 class="card-header-title">
-                                    Card title
-                                </h3>
-                                <i class="card-header-info fa-solid fa-minimize"></i>
-                            </div>
-                            <div>
-                                <span class="card-desc">
-                                        Sample card description: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam rutrum fermentum ipsum, id ornare sem mattis id. Quisque sed dolor sit amet tellus condimentum iaculis. Quisque gravida laoreet sapien, nec euismod eros viverra eget. Phasellus sit amet rhoncus nibh. Sed non ipsum est. Nunc rutrum finibus massa quis semper. Duis nec neque cursus, ultrices tellus at, lacinia erat. Aenean at eros ligula. Fusce bibendum eu velit in molestie.
-                                        Sample card description: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam rutrum fermentum ipsum, id ornare sem mattis id. Quisque sed dolor sit amet tellus condimentum iaculis. Quisque gravida laoreet sapien, nec euismod eros viverra eget. Phasellus sit amet rhoncus nibh. Sed non ipsum est. Nunc rutrum finibus massa quis semper. Duis nec neque cursus, ultrices tellus at, lacinia erat. Aenean at eros ligula. Fusce bibendum eu velit in molestie.
-                                        Sample card description: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam rutrum fermentum ipsum, id ornare sem mattis id. Quisque sed dolor sit amet tellus condimentum iaculis. Quisque gravida laoreet sapien, nec euismod eros viverra eget. Phasellus sit amet rhoncus nibh. Sed non ipsum est. Nunc rutrum finibus massa quis semper. Duis nec neque cursus, ultrices tellus at, lacinia erat. Aenean at eros ligula. Fusce bibendum eu velit in molestie.
-                                        Sample card description: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam rutrum fermentum ipsum, id ornare sem mattis id. Quisque sed dolor sit amet tellus condimentum iaculis. Quisque gravida laoreet sapien, nec euismod eros viverra eget. Phasellus sit amet rhoncus nibh. Sed non ipsum est. Nunc rutrum finibus massa quis semper. Duis nec neque cursus, ultrices tellus at, lacinia erat. Aenean at eros ligula. Fusce bibendum eu velit in molestie.
-                                        Sample card description: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam rutrum fermentum ipsum, id ornare sem mattis id. Quisque sed dolor sit amet tellus condimentum iaculis. Quisque gravida laoreet sapien, nec euismod eros viverra eget. Phasellus sit amet rhoncus nibh. Sed non ipsum est. Nunc rutrum finibus massa quis semper. Duis nec neque cursus, ultrices tellus at, lacinia erat. Aenean at eros ligula. Fusce bibendum eu velit in molestie.
-                                        Sample card description: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam rutrum fermentum ipsum, id ornare sem mattis id. Quisque sed dolor sit amet tellus condimentum iaculis. Quisque gravida laoreet sapien, nec euismod eros viverra eget. Phasellus sit amet rhoncus nibh. Sed non ipsum est. Nunc rutrum finibus massa quis semper. Duis nec neque cursus, ultrices tellus at, lacinia erat. Aenean at eros ligula. Fusce bibendum eu velit in molestie.
-                                        Sample card description: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam rutrum fermentum ipsum, id ornare sem mattis id. Quisque sed dolor sit amet tellus condimentum iaculis. Quisque gravida laoreet sapien, nec euismod eros viverra eget. Phasellus sit amet rhoncus nibh. Sed non ipsum est. Nunc rutrum finibus massa quis semper. Duis nec neque cursus, ultrices tellus at, lacinia erat. Aenean at eros ligula. Fusce bibendum eu velit in molestie.
-                                        Sample card description: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam rutrum fermentum ipsum, id ornare sem mattis id. Quisque sed dolor sit amet tellus condimentum iaculis. Quisque gravida laoreet sapien, nec euismod eros viverra eget. Phasellus sit amet rhoncus nibh. Sed non ipsum est. Nunc rutrum finibus massa quis semper. Duis nec neque cursus, ultrices tellus at, lacinia erat. Aenean at eros ligula. Fusce bibendum eu velit in molestie.
-                                        Sample card description: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam rutrum fermentum ipsum, id ornare sem mattis id. Quisque sed dolor sit amet tellus condimentum iaculis. Quisque gravida laoreet sapien, nec euismod eros viverra eget. Phasellus sit amet rhoncus nibh. Sed non ipsum est. Nunc rutrum finibus massa quis semper. Duis nec neque cursus, ultrices tellus at, lacinia erat. Aenean at eros ligula. Fusce bibendum eu velit in molestie.
-                                        Sample card description: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam rutrum fermentum ipsum, id ornare sem mattis id. Quisque sed dolor sit amet tellus condimentum iaculis. Quisque gravida laoreet sapien, nec euismod eros viverra eget. Phasellus sit amet rhoncus nibh. Sed non ipsum est. Nunc rutrum finibus massa quis semper. Duis nec neque cursus, ultrices tellus at, lacinia erat. Aenean at eros ligula. Fusce bibendum eu velit in molestie.
-                                        Sample card description: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam rutrum fermentum ipsum, id ornare sem mattis id. Quisque sed dolor sit amet tellus condimentum iaculis. Quisque gravida laoreet sapien, nec euismod eros viverra eget. Phasellus sit amet rhoncus nibh. Sed non ipsum est. Nunc rutrum finibus massa quis semper. Duis nec neque cursus, ultrices tellus at, lacinia erat. Aenean at eros ligula. Fusce bibendum eu velit in molestie.
-                                        Sample card description: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam rutrum fermentum ipsum, id ornare sem mattis id. Quisque sed dolor sit amet tellus condimentum iaculis. Quisque gravida laoreet sapien, nec euismod eros viverra eget. Phasellus sit amet rhoncus nibh. Sed non ipsum est. Nunc rutrum finibus massa quis semper. Duis nec neque cursus, ultrices tellus at, lacinia erat. Aenean at eros ligula. Fusce bibendum eu velit in molestie.
-                                        Sample card description: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam rutrum fermentum ipsum, id ornare sem mattis id. Quisque sed dolor sit amet tellus condimentum iaculis. Quisque gravida laoreet sapien, nec euismod eros viverra eget. Phasellus sit amet rhoncus nibh. Sed non ipsum est. Nunc rutrum finibus massa quis semper. Duis nec neque cursus, ultrices tellus at, lacinia erat. Aenean at eros ligula. Fusce bibendum eu velit in molestie.
-                                        Sample card description: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam rutrum fermentum ipsum, id ornare sem mattis id. Quisque sed dolor sit amet tellus condimentum iaculis. Quisque gravida laoreet sapien, nec euismod eros viverra eget. Phasellus sit amet rhoncus nibh. Sed non ipsum est. Nunc rutrum finibus massa quis semper. Duis nec neque cursus, ultrices tellus at, lacinia erat. Aenean at eros ligula. Fusce bibendum eu velit in molestie.
-                                        Sample card description: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam rutrum fermentum ipsum, id ornare sem mattis id. Quisque sed dolor sit amet tellus condimentum iaculis. Quisque gravida laoreet sapien, nec euismod eros viverra eget. Phasellus sit amet rhoncus nibh. Sed non ipsum est. Nunc rutrum finibus massa quis semper. Duis nec neque cursus, ultrices tellus at, lacinia erat. Aenean at eros ligula. Fusce bibendum eu velit in molestie.
-                                        Sample card description: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam rutrum fermentum ipsum, id ornare sem mattis id. Quisque sed dolor sit amet tellus condimentum iaculis. Quisque gravida laoreet sapien, nec euismod eros viverra eget. Phasellus sit amet rhoncus nibh. Sed non ipsum est. Nunc rutrum finibus massa quis semper. Duis nec neque cursus, ultrices tellus at, lacinia erat. Aenean at eros ligula. Fusce bibendum eu velit in molestie.
-                                </span>
-                            </div>
+                <expand-card
+                    class="card-item card-shadow card-hover"
+                    onclick="openCard(this, 'modal-simple')"
+                    style="grid-column: 3 / span 1; grid-row: 2 / span 2"
+                    >
+                    <div slot="card-title">The third card !!</div>
+                    <div slot="card-desc">
+                        <span>This one has to be different for testing purposes.</span>
+                        <span>This one has to be different for testing purposes.</span>
+                        <div style="background: red;">
+                            A nested card
                         </div>
-                    </modal-content>
-                </div>
+                    </div>
+                </expand-card>
 
             </div>
 
+            <modal-card class="modal" id="modal-simple">
+                <p slot="modal-title">A simple text</p>
+                <div slot="modal-content">
+                    A simple content for my <p style="display: inline; font-size: large; font-family: Arial, Helvetica, sans-serif; font-style: italic; color: steelblue;">beautiful</p> modal.
+                </div>
+            </modal-card>
+            <modal-card class="modal" id="modal-lorem-ipsum">
+                <p slot="modal-title">A new title for my beautiful modal</p>
+                <div slot="modal-content">
+                    <p style="font-size: large; color: steelblue;">The standard Lorem Ipsum passage, used since the 1500s</p>
+                    <span style="border-left: solid steelblue;">
+                        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+                    </span>
+                    <p style="font-size: large; color: steelblue;">Section 1.10.32 of "de Finibus Bonorum et Malorum", written by Cicero in 45 BC</p>
+                    <span style="border-left: solid steelblue;">
+                        "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?"
+                    </span>
+                </div>
+            </modal-card>
         </section>
 
         <section id="contact" class="body-section">

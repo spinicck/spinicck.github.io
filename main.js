@@ -59,7 +59,13 @@ function toggleLightDarkMode() {
     }
 }
 
-async function openCard(e) {
+/**
+ * Trigger animation opening a card and a modal.
+ * Set the global variables `currentOpenedCard` and `currentOpenedModal`.
+ * @param {ExpandCard} e card element node
+ * @param {string} mid card modal id
+ */
+async function openCard(e, mid) {
     console.debug("Call openCard: ", e)
     currentOpenedCard = e
     /* Compute center of viewport */
@@ -83,10 +89,9 @@ async function openCard(e) {
     animation.commitStyles()
     animation.cancel()
     /* Make modal */
-    currentOpenedModal = currentOpenedCard.getElementsByTagName("modal-content")[0].cloneNode(true)
+    currentOpenedModal = document.querySelector(`#${mid}`)
     currentOpenedModal.style.display = "flex"
     currentOpenedModal.onclick = closeModal
-    document.body.appendChild(currentOpenedModal)
     /* Animate modal opening */
     animation = await currentOpenedModal.animate(
         [
@@ -99,6 +104,10 @@ async function openCard(e) {
     animation.cancel()
 }
 
+/**
+ * Function that animate the modal closing, and expanded card minimizing.
+ * Reset the 'currentOpenedCard' and 'currentOpenedModal' global variables.
+ */
 async function closeModal() {
     /* Animation modal closing */
     let animation = await currentOpenedModal.animate(
@@ -112,7 +121,6 @@ async function closeModal() {
     animation.cancel()
     /* Hide modal and remove from DOM */
     currentOpenedModal.style.display = "none"
-    currentOpenedModal.remove()
     currentOpenedModal = null
     /* Animate card minimizing */
     animation = await currentOpenedCard.animate(
@@ -127,3 +135,48 @@ async function closeModal() {
     /* Empty current Opened card */
     currentOpenedCard = null
 }
+
+/**
+ * Class to make reusable regular card components
+ */
+class RegularCard extends HTMLElement {
+    constructor() {
+        super();
+        let template = document.getElementById("regular-card");
+        let templateContent = template.content;
+
+        const shadowRoot = this.attachShadow({ mode: "open" });
+        shadowRoot.appendChild(templateContent.cloneNode(true));
+    }
+}
+
+/**
+ * Class to make reusable expandable card components
+ */
+class ExpandCard extends HTMLElement {
+    constructor() {
+        super();
+        let template = document.getElementById("expand-card");
+        let templateContent = template.content;
+
+        const shadowRoot = this.attachShadow({ mode: "open" });
+        shadowRoot.appendChild(templateContent.cloneNode(true));
+    }
+}
+
+/**
+ * Class to make reusable modal card.
+ */
+class ModalCard extends HTMLElement {
+    constructor() {
+        super();
+        let template = document.getElementById("modal-card");
+        let templateContent = template.content;
+        const shadowRoot = this.attachShadow({ mode: "open" });
+        shadowRoot.appendChild(templateContent.cloneNode(true));
+    }
+}
+/* Define simple card html-tag */
+customElements.define("regular-card", RegularCard, );
+customElements.define("expand-card", ExpandCard, );
+customElements.define("modal-card", ModalCard, );
