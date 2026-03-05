@@ -318,7 +318,9 @@ body {
 
 
 /* multi-classes selectors */
-/* insert here in case these are needed */
+.card-item a {
+    color: var(--md-sys-color-primary);
+}
 
 /* dynamic and state rules (hover, active, ...) */
 .card-hover:hover .card-header-title {
