@@ -386,17 +386,3 @@ a {
         width: 100%;
     }
 }
-
-/*******************************************************************************
-* Contact
-*******************************************************************************/
-/* css classes */
-.contact-card {}
-
-/* multi-classes selectors */
-.contact-card i {
-    font-size: 24pt;
-}
-
-/* dynamic and state rules (hover, active, ...) */
-/* insert here in case these are needed */
