@@ -51,6 +51,10 @@ a {
     align-items: flex-start;
 }
 
+.flex-justify-end {
+    justify-content: flex-end;
+}
+
 .big-link {
     display: flex;
     justify-content: center;
@@ -318,19 +322,16 @@ a {
     color: var(--md-sys-color-on-surface-container);
 }
 
-.card-header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+.card-title {
+    color: var(--md-sys-color-primary);
+    font-size: 20pt;
+    transition: all 200ms ease-in-out;
 }
 
-.card-header-title {
-    color: var(--md-sys-color-on-background);
-}
-
-.card-header-info {
-    font-size: small;
-    color: var(--md-sys-color-tertiary);
+.card-expand-icon {
+    font-size: 16pt;
+    color: var(--md-sys-color-primary);
+    transition: all 200ms ease-in-out;
 }
 
 .modal {
@@ -362,16 +363,16 @@ a {
 /* insert here in case these are needed */
 
 /* dynamic and state rules (hover, active, ...) */
-.card-hover:hover .card-header-title {
-    color: var(--md-sys-color-primary);
-}
-
-.card-hover:hover .card-header-info {
+:host(.card-hover:hover) .card-title,
+    :host(.card-hover:hover) .card-expand-icon,
+    .card-hover:hover .card-expand-icon
+    {
     color: var(--md-sys-color-secondary);
 }
 
+
 .card-item.card-hover:hover{
-    box-shadow: 0px 0px 8px var(--md-sys-color-primary);
+    box-shadow: 0px 0px 8px var(--md-sys-color-secondary);
 }
 
 @media screen and (max-width: 1000px) {
@@ -386,17 +387,3 @@ a {
         width: 100%;
     }
 }
-
-/*******************************************************************************
-* Contact
-*******************************************************************************/
-/* css classes */
-.contact-card {}
-
-/* multi-classes selectors */
-.contact-card i {
-    font-size: 24pt;
-}
-
-/* dynamic and state rules (hover, active, ...) */
-/* insert here in case these are needed */
