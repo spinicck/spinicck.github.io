@@ -8,23 +8,6 @@ var currentOpenedCard = null
 var currentOpenedModal = null
 
 /**
- * Observer to animate element appearances on screen
- */
-const showOnScrollObserver = new IntersectionObserver((entries) => {
-    entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-            entry.target.classList.toggle("show")
-        } else {
-            entry.target.classList.toggle("show")
-        }
-    });
-})
-
-/* Get elements with scroll animation and add observer. */
-const showOnScrollElements = document.querySelectorAll(".show-on-scroll.hidden")
-showOnScrollElements.forEach((el) => showOnScrollObserver.observe(el));
-
-/**
  * Show/hide the navbar when the navbar toggle button is pressed.
  * Hide the navbar when an element is pressed.
  * @returns void

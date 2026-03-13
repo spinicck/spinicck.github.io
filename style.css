@@ -70,24 +70,7 @@ a {
     padding: 15px 5vw 15px 5vw;
 }
 
-.from-bottom {
-    transform: translateY(10%);
-}
-
 /* multi-classes selectors */
-.show-on-scroll.hidden {
-    opacity: 0;
-    filter: blur(2px);
-    transition: all 1s ease-in-out;
-}
-
-.show-on-scroll.show {
-    opacity: 1;
-    filter: blur(0px);
-    transform: translateX(0);
-    transform: translateY(0);
-}
-
 .big-link i {
     font-size: 24pt;
 }
