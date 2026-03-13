@@ -4,10 +4,10 @@
 
 /* css classes */
 html{
-    font-family: "Roboto", sans-serif, Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
-    font-size: 16px;
-    color: var(--md-sys-color-on-background);
-    background-color: var(--md-sys-color-background);
+    font-family: "Open Sans", "Roboto Mono";
+    font-size: 14pt;
+    color: var(--color-on-background);
+    background-color: var(--color-background);
 }
 
 body {
@@ -60,26 +60,14 @@ a {
     justify-content: center;
     font-size: 18pt;
     gap: 8px;
-    color: var(--md-sys-color-primary);
+    color: var(--color-primary);
     padding: 15px;
     border-radius: 12px;
     transition: transform ease-in-out 400ms;
 }
 
-.section-title {
-    color: var(--md-sys-color-primary);
-}
-
-.section-subtitle {
-    color: var(--md-sys-color-secondary);
-}
-
 .body-section{
     padding: 15px 5vw 15px 5vw;
-}
-
-.card {
-    box-shadow: 4px 4px 8px var(--md-sys-color-shadow);
 }
 
 .from-bottom {
@@ -110,7 +98,7 @@ a {
 }
 
 .big-link:hover::after {
-    background-color: var(--md-sys-color-primary); 
+    background-color: var(--color-primary); 
     bottom: 0;
     content: '';
     display: block;
@@ -147,8 +135,8 @@ a {
     display: flex;
     flex-flow: row;
     align-items: center;
-    background: var(--md-sys-color-primary);
-    transition: 100ms ease-in;
+    background: var(--color-primary);
+    transition: height 300ms ease-in;
 }
 
 .nav-container {
@@ -188,7 +176,7 @@ a {
 
 /* multi-classes selectors */
 .nav-item, .nav-button, .nav-title {
-    color: var(--md-sys-color-on-primary);
+    color: var(--color-on-primary);
     text-decoration: none;
 }
 
@@ -212,13 +200,23 @@ a {
 .nav-left .nav-button:last-child {display: none;}
 
 @media screen and (max-width: 1000px){
-    .nav-main, .nav-right { display: none; font-size: 1.5rem;}
-    .nav-left .nav-button:last-child { display: block; }
+    .nav-main, .nav-right {
+        display: none;
+        font-size: 32pt;
+    }
+    .nav-left .nav-button:last-child {
+        display: block;
+    }
+
+    .nav-bar {
+        height: 8vh;
+    }   
 
     .nav-bar.compact {
         display: flex;
         flex-flow: column;
-        height: 60vh;
+        min-height: fit-content;
+        height: 50vh;
     }
 
     .nav-left {
@@ -230,19 +228,12 @@ a {
 
     .nav-bar.compact .nav-main{
         display: flex;
-        flex-flow: column;
+        flex-direction: column;
     }
 
     .nav-bar.compact .nav-right{
         display: flex;
-    }
-
-    .nav-bar.compact .nav-item{
-        display: block;
-    }
-
-    .nav-bar.compact .nav-button{
-        display: block;
+        flex-direction: column;
     }
 }
 
@@ -267,7 +258,7 @@ a {
 }
 
 .aboutme-title {
-    color: var(--md-sys-color-primary);
+    color: var(--color-primary);
     font-size: 4rem;
 }
 
@@ -302,7 +293,7 @@ a {
 *******************************************************************************/
 /* css classes */
 .card-shadow {
-    box-shadow: 0px 0px 8px -5px var(--md-sys-color-shadow);
+    box-shadow: 0px 0px 8px -5px var(--color-shadow);
 }
 
 .card-list {
@@ -318,19 +309,19 @@ a {
     gap: 5px;
     padding: 15px 15px 15px 15px;
     border-radius: 15px;
-    background: var(--md-sys-color-surface-container-lowest);
-    color: var(--md-sys-color-on-surface-container);
+    background: var(--color-container);
+    color: var(--color-on-container);
 }
 
 .card-title {
-    color: var(--md-sys-color-primary);
+    color: var(--color-primary);
     font-size: 20pt;
     transition: all 200ms ease-in-out;
 }
 
 .card-expand-icon {
     font-size: 16pt;
-    color: var(--md-sys-color-primary);
+    color: var(--color-primary);
     transition: all 200ms ease-in-out;
 }
 
@@ -367,12 +358,12 @@ a {
     :host(.card-hover:hover) .card-expand-icon,
     .card-hover:hover .card-expand-icon
     {
-    color: var(--md-sys-color-secondary);
+    color: var(--color-secondary);
 }
 
 
 .card-item.card-hover:hover{
-    box-shadow: 0px 0px 8px var(--md-sys-color-secondary);
+    box-shadow: 0px 0px 8px var(--color-secondary);
 }
 
 @media screen and (max-width: 1000px) {
