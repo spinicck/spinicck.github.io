@@ -32,16 +32,13 @@ showOnScrollElements.forEach((el) => showOnScrollObserver.observe(el));
 function toggleNavbar() {
     var navbar = document.getElementById("nav-bar");
     var navToggleIcon = document.getElementById("nav-toggle-icon");
-    /* Only trigger toggle event if screen size is smaller than 800px */
-    if (!matchMedia("(max-width: 800px)").matches) {
+    /* Only trigger toggle event if screen size is smaller than 1000px */
+    if (!matchMedia("(max-width: 1000px)").matches) {
         return;
     }
-    if (navbar.classList.contains("compact")) {
-        navToggleIcon.innerHTML = "menu"
-    } else {
-        navToggleIcon.innerHTML = "close"
-    }
     navbar.classList.toggle("compact")
+    navToggleIcon.classList.toggle("fa-bars")
+    navToggleIcon.classList.toggle("fa-x")
 }
 
 /**
@@ -50,12 +47,12 @@ function toggleNavbar() {
 function toggleLightDarkMode() {
     const hmtlTag = document.getElementsByTagName("html")[0];
     const navThemeIcon = document.getElementById("nav-theme-icon")
+    navThemeIcon.classList.toggle("fa-sun")
+    navThemeIcon.classList.toggle("fa-moon")
     if (hmtlTag.className === "light") {
         hmtlTag.className = "dark"
-        navThemeIcon.innerHTML = "dark_mode"
     } else {
         hmtlTag.className = "light"
-        navThemeIcon.innerHTML = "light_mode"
     }
 }
 

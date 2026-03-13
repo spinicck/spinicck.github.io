@@ -82,11 +82,6 @@ a {
     transform: translateY(10%);
 }
 
-.material-icons.md-18 { font-size: 18px; }
-.material-icons.md-24 { font-size: 24px; }
-.material-icons.md-36 { font-size: 36px; }
-.material-icons.md-48 { font-size: 48px; }
-
 /* multi-classes selectors */
 .show-on-scroll.hidden {
     opacity: 0;
@@ -140,18 +135,15 @@ a {
 *******************************************************************************/
 /* css classes */
 .nav-bar{
-    view-transition-name: navbar;
     z-index: 999; /* ensure the nav-bar is on top of everything */
     position: sticky; /* Set the navbar to fixed position */    
     top: 0; /* Position the navbar at the top of the page */
-    padding: 2vw 2vw 1vw 1vw;
+    padding: 4px 16px;
     justify-content: space-between;
     display: flex;
     flex-flow: row;
-    gap: 1em;
     align-items: center;
     background: var(--md-sys-color-primary);
-    height: 5vh;
     transition: 100ms ease-in;
 }
 
@@ -167,14 +159,11 @@ a {
 
 .nav-main {
     gap: 15px;
+    font-size: larger;
 }
 
-.nav-link {
-    font-style: normal;
-}
-
-.nav-title {
-    font-size: 1.2rem;
+.nav-item {
+    transition: 200ms ease-in-out;
 }
 
 .nav-button{
@@ -189,13 +178,17 @@ a {
     height: 100%;
 }
 
+.nav-icon {
+    font-size: 32px;
+}
+
 /* multi-classes selectors */
-.nav-link, .nav-button, .nav-title {
+.nav-item, .nav-button, .nav-title {
     color: var(--md-sys-color-on-primary);
     text-decoration: none;
 }
 
-.nav-container .nav-link{
+.nav-container .nav-item{
     display: inline-block;
     text-align: center;
     border-radius: 5px;
@@ -207,21 +200,16 @@ a {
     flex-grow: 2;
 }
 
-.nav-button:hover, .nav-link:hover{
-    transition: 100ms ease-in-out;
+.nav-item:hover{
+    transform: translate(0px, 8px);
     scale: 1.2;
 }
 
-.nav-link:hover{
-    color: var(--md-sys-color-on-primary-container);
-    background-color: var(--md-sys-color-primary-container);
-}
+.nav-left .nav-button:last-child {display: none;}
 
-.nav-left .nav-button {display: none;}
-
-@media screen and (max-width: 600px){
+@media screen and (max-width: 1000px){
     .nav-main, .nav-right { display: none; font-size: 1.5rem;}
-    .nav-left .nav-button { display: block; }
+    .nav-left .nav-button:last-child { display: block; }
 
     .nav-bar.compact {
         display: flex;
@@ -245,7 +233,7 @@ a {
         display: flex;
     }
 
-    .nav-bar.compact .nav-link{
+    .nav-bar.compact .nav-item{
         display: block;
     }
 

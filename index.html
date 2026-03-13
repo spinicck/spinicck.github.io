@@ -10,10 +10,6 @@
         <meta charset="UTF-8">
         <title>Kévin SPINICCI</title>
         <link rel="stylesheet" href="style.css">
-        <!-- Bootstrap icons -->
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
-        <!-- Material google's icons -->
-        <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
         <!-- Google's font -->
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -100,28 +96,27 @@
 
     <nav id="nav-bar" class="nav-bar">
         <div class="nav-left nav-container">
-            <a class="nav-title nav-link" href="/">Kévin SPINICCI</a>
-            <button class="nav-button" onclick="toggleNavbar()">
-                <i id="nav-toggle-icon" class="material-symbols-outlined material-icons md-36">menu</i>
+            <a class="nav-button nav-item" href="/">
+                <i class="fa-solid fa-libra nav-icon"></i>
+            </a>
+            <button class="nav-button nav-item" onclick="toggleNavbar()">
+                <i id="nav-toggle-icon" class="fa-solid fa-bars nav-icon"></i>
             </button>
         </div>
         <ul class="nav-main nav-container">
             <li>
-                <a class="nav-link" onclick="toggleNavbar()" href="#aboutme" title="Details about me an my interest.">About me</a>
+                <a class="nav-item" onclick="toggleNavbar()" href="#aboutme">About me</a>
             </li>
             <li>
-                <a class="nav-link" onclick="toggleNavbar()" href="#research">Research</a>
+                <a class="nav-item" onclick="toggleNavbar()" href="#research">Research</a>
             </li>
             <li>
-                <a class="nav-link" onclick="toggleNavbar()" href="#skills">Skills</a>
-            </li>
-            <li>
-                <a class="nav-link" onclick="toggleNavbar()" href="#contact">Contact</a>
+                <a class="nav-item" onclick="toggleNavbar()" href="#contact">Contact</a>
             </li>
         </ul>
         <div class="nav-right nav-container">
-            <button class="nav-button" onclick="toggleLightDarkMode()">
-                <i id="nav-theme-icon" class="material-symbols-outlined material-icons md-36">light_mode</i>
+            <button class="nav-button nav-item" onclick="toggleLightDarkMode()">
+                <i id="nav-theme-icon" class="fa-solid fa-sun nav-icon"></i>
             </button>
         </div>
     </nav>
