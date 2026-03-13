@@ -127,14 +127,14 @@
     </nav>
 	<body>
         <section id="aboutme" class="body-section show-on-scroll hidden from-bottom">
-            <div class="aboutme">
-                <div class="aboutme-main">
+            <div class="flex-row responsive aboutme">
+                <div class="flex-column responsive aboutme-main flex-align-start">
                     <h1 class="aboutme-title">Hi, I'm Kévin ! </h1>
                     <span class="aboutme-description">
                         Hi I am Kévin, a computational biologist who likes to use mathematical and statistcal tools to study biological systems. I use mathematical modelling to describe growth of tumour influenced by cellular metabolism and extracellular remodelling operated by the cell. Furthermore, I applied statistical tools to study transcriptomic data aiming to search for deregulated processes within a cell population. In the future, I would like to developp and implement my own workflows and method to unravel the cellular dynamic and heterogeneity.
                     </span>
                 </div>
-                <div class="aboutme-right">
+                <div class="flex-column responsive aboutme-right">
                     <img class="aboutme-picture" src="assets/Unknown_Member.jpg" alt="Profile Picture">
                 </div>
             </div>
@@ -154,7 +154,7 @@
                     onclick="openCard(this, 'modal-gbm-growth')"
                     >
                     <p slot="card-title">Agent-Based Modelling of glioblastoma cell growth</p>
-                    <div slot="card-desc" style="display: flex; align-items: center; gap: 36px;">
+                    <div slot="card-desc" class="flex-row responsive">
                         <span>
                             While cells rely mainly on oxidative processes to generate their energy, cancer cells have been to have increased usage of glycolysis leading to increased glucose consumption and lower pH. This behaviour has been observed in normoxia and was called the Warburg effect. Through mathematical modelling of tumour growth, I showed that both oxygen fluctuations and genetic regulation may trigger the appearance of a Warburg phenotype in model.
                         </span>
@@ -167,25 +167,25 @@
                     class="card-item card-shadow"
                     >
                     <p slot="card-title">Scientific calculus</p>
-                    <div slot="card-desc" class="dev-language-list">
-                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/r/r-original.svg" />
-                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/julia/julia-original-wordmark.svg" />
-                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/python/python-original-wordmark.svg" />
-                        <img src="assets/icons/Scanpy_Logo_BrightFG.svg" />
-                        <img src="assets/icons/SeuratV5.png" />
+                    <div slot="card-desc" class="flex-row">
+                        <img class="icon-item" src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/r/r-original.svg" />
+                        <img class="icon-item" src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/julia/julia-original-wordmark.svg" />
+                        <img class="icon-item" src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/python/python-original-wordmark.svg" />
+                        <img class="icon-item" src="assets/icons/Scanpy_Logo_BrightFG.svg" />
+                        <img class="icon-item" src="assets/icons/SeuratV5.png" />
                     </div>
                 </regular-card>
                 <regular-card
                     class="card-item card-shadow"
                     >
                     <p slot="card-title">Development</p>
-                    <div slot="card-desc" class="dev-language-list">
-                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/git/git-plain-wordmark.svg" />
-                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/cplusplus/cplusplus-original.svg" />
-                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/java/java-original.svg" />
-                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/javascript/javascript-original.svg" />
-                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/html5/html5-original.svg" />
-                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/css3/css3-original.svg" />
+                    <div slot="card-desc" class="flex-row">
+                        <img class="icon-item" src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/git/git-plain-wordmark.svg" />
+                        <img class="icon-item" src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/cplusplus/cplusplus-original.svg" />
+                        <img class="icon-item" src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/java/java-original.svg" />
+                        <img class="icon-item" src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/javascript/javascript-original.svg" />
+                        <img class="icon-item" src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/html5/html5-original.svg" />
+                        <img class="icon-item" src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/css3/css3-original.svg" />
                     </div>
                 </regular-card>
 
@@ -205,7 +205,7 @@
                     onclick="openCard(this, 'modal-umap-scrnaseq')"
                     >
                     <p slot="card-title">Statistical data analysis of bulk and single-cell transcriptomic data</p>
-                    <div slot="card-desc" style="display: flex; align-items: center; gap: 36px;">
+                    <div slot="card-desc" class="flex-row responsive">
                         <img src="assets/img/umap_scrnaseq.png" width="256px" alt="Results of tumour growth model.">
                         <span>
                             Transcriptomic data are widely used to detect differences between gene expression pattern between two factors. This standard analysis has a wide vareiety of application including finding targets for disease treatment or merely assessing cell-types in a cell population. I applied differential expression analysis and pathway enrichment to determine the frequently deregulated pathways in glioblastoma bulk RNA data. Using methods for single-cell, such as Seurat and scanpy, I assessed the batch effect in data with the goal of correcting this biais and searched for markers to identify cell-types in different cells clusters.
@@ -217,7 +217,7 @@
                     class="card-item card-shadow"
                     >
                     <p slot="card-title">Do you like this website ?</p>
-                    <div slot="card-desc" class="contact-column">
+                    <div slot="card-desc" class="flex-column responsive">
                         <span>
                             My goal was to make a website that would only uses vanilla HTML, CSS and javascript. <p style="font-weight: bold; display: inline;">No library or framework !</p>
                             If you like this website, you can browse the code on my github.
@@ -235,15 +235,15 @@
                     style="grid-column: span 2;"
                     >
                     <p slot="card-title">Want to connect ? Here is my info !</p>
-                    <div slot="card-desc" class="contact-column" style="align-items: center;">
-                        <div class="contact-row">
+                    <div slot="card-desc" class="flex-column responsive" style="align-items: center;">
+                        <div class="flex-row responsive">
                             <a href="mailto:kevin.spinicci@outlook.com" class="big-link">
                                     <i class="fa-solid fa-at"></i>
                                     kevin.spinicci@outlook.com
                             </a> 
                         </div>
-                        <div class="contact-row">
-                            <div class="contact-column">
+                        <div class="flex-row responsive">
+                            <div class="flex-column flex-align-start">
                                 <a href="https://github.com/spinicck" target="_blank" class="big-link">
                                     <i class="fa-brands fa-github"></i>
                                     spinicck
@@ -253,7 +253,7 @@
                                     in/kevin-spinicci
                                 </a>
                             </div>
-                            <div class="contact-column">
+                            <div class="flex-column flex-align-start">
                                 <a href="https://orcid.org/0000-0001-9200-4401" target="_blank" class="big-link">
                                     <i class="fa-brands fa-orcid"></i>
                                     0000-0001-9200-4401

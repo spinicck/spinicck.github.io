@@ -25,6 +25,43 @@ body {
 * General rules
 *******************************************************************************/
 /* css classes */
+a {
+    text-decoration: none;
+}
+
+.flex-row {
+    display: flex;
+    flex-direction: row;
+    gap: 12px;
+    align-items: center;
+    justify-content: space-evenly;
+    width: 100%;
+}
+
+.flex-column {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    align-items: center;
+    justify-content: space-evenly;
+    height: 100%;
+}
+
+.flex-align-start {
+    align-items: flex-start;
+}
+
+.big-link {
+    display: flex;
+    justify-content: center;
+    font-size: 18pt;
+    gap: 8px;
+    color: var(--md-sys-color-primary);
+    padding: 15px;
+    border-radius: 12px;
+    transition: transform ease-in-out 400ms;
+}
+
 .section-title {
     color: var(--md-sys-color-primary);
 }
@@ -63,10 +100,38 @@ body {
     transform: translateX(0);
     transform: translateY(0);
 }
+
+.big-link i {
+    font-size: 24pt;
+}
+
 /* dynamic and state rules (hover, active, ...) */
+.big-link:hover {
+    transform: scale(1.1) translate(0px, -10px);
+}
+
+.big-link:hover::after {
+    background-color: var(--md-sys-color-primary); 
+    bottom: 0;
+    content: '';
+    display: block;
+    height: 4px;
+    left: 50%;
+    position: absolute;
+    transform: translate(-50%,0);
+    width: 20%;
+}
+
 @media(prefers-reduced-motion) {
     .show-on-scroll.hidden {
         transition: none;
+    }
+}
+
+@media screen and (max-width: 1000px) {
+    .flex-row.responsive {
+        flex-direction: column;
+        align-items: center;
     }
 }
 
@@ -192,16 +257,13 @@ body {
 /*******************************************************************************
 * About me
 *******************************************************************************/
-/* css classes */
-.aboutme {
-    display: grid;
-    grid-template-columns: 6fr 4fr;
-    column-gap: 5px 50px;
-    border-radius: 25px;
-    padding: 15px 15px 15px 15px;
-}
+/* Used in html, use this for styling the description in 'aboutme' */
+/* .aboutme-description {} */
+/* .aboutme {} */
 
+/* css classes */
 .aboutme-main {
+    width: 70ch;
     padding: 6px;
     padding-right: 12px;
     font-size: 1.2rem;
@@ -216,9 +278,6 @@ body {
     color: var(--md-sys-color-primary);
     font-size: 4rem;
 }
-
-/* Used in html, use this for styling the description in 'aboutme' */
-/* .aboutme-description {} */
 
 .aboutme-picture {
     border-radius: 100%;
@@ -306,13 +365,7 @@ body {
     overflow: auto; /* Enable scroll if needed */
 }
 
-.dev-language-list {
-    display: flex;
-    justify-content: space-evenly;
-    align-items: center;
-}
-
-.dev-language-list img {
+.icon-item {
     width: 48px;
 }
 
@@ -333,27 +386,24 @@ body {
     box-shadow: 0px 0px 8px var(--md-sys-color-primary);
 }
 
+@media screen and (max-width: 1000px) {
+    .card-list {
+        display: flex;
+        flex-flow: column;
+        align-items: center;
+        justify-items: center;
+        gap: 10px;
+    }
+    .card-item {
+        width: 100%;
+    }
+}
+
 /*******************************************************************************
 * Contact
 *******************************************************************************/
 /* css classes */
 .contact-card {}
-
-.contact-row {
-    display: flex;
-    flex-direction: row;
-    gap: 12px;
-    justify-content: space-evenly;
-    width: 100%;
-}
-
-.contact-column {
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-    justify-content: space-evenly;
-    height: 100%;
-}
 
 /* multi-classes selectors */
 .contact-card i {
@@ -362,44 +412,3 @@ body {
 
 /* dynamic and state rules (hover, active, ...) */
 /* insert here in case these are needed */
-
-/********************************************************************************
-* Some general purpose stuff
-********************************************************************************/
-/* css classes */
-.big-link {
-    display: flex;
-    justify-content: center;
-    font-size: 18pt;
-    gap: 8px;
-    color: var(--md-sys-color-primary);
-    padding: 15px;
-    border-radius: 12px;
-    transition: transform ease-in-out 400ms;
-}
-
-a {
-    text-decoration: none;
-}
-
-/* multi-classes selectors */
-.big-link i {
-    font-size: 24pt;
-}
-
-/* dynamic and state rules (hover, active, ...) */
-.big-link:hover {
-    transform: scale(1.1) translate(0px, -10px);
-}
-
-.big-link:hover::after {
-    background-color: var(--md-sys-color-primary); 
-    bottom: 0;
-    content: '';
-    display: block;
-    height: 4px;
-    left: 50%;
-    position: absolute;
-    transform: translate(-50%,0);
-    width: 20%;
-}
