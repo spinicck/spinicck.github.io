@@ -217,15 +217,53 @@
                     class="card-item card-shadow"
                     >
                     <p slot="card-title">Do you like this website ?</p>
-                    <div slot="card-desc" style="display: flex; flex-direction: column; gap: 8px;">
+                    <div slot="card-desc" class="contact-column">
                         <span>
                             My goal was to make a website that would only uses vanilla HTML, CSS and javascript. <p style="font-weight: bold; display: inline;">No library or framework !</p>
                             If you like this website, you can browse the code on my github.
                         </span>
-                        <a href="https://github.com/spinicck/spinicck.github.io" target="_blank" style="font-size: larger;">
+                        <a href="https://github.com/spinicck/spinicck.github.io" target="_blank" class="big-link">
                             <i class="fa-brands fa-github"></i>
                             spinicck/spinicck.github.io
                         </a>
+                    </div>
+                </regular-card>
+
+                <regular-card
+                    id="contact"
+                    class="card-item card-shadow contact-card"
+                    style="grid-column: span 2;"
+                    >
+                    <p slot="card-title">Want to connect ? Here is my info !</p>
+                    <div slot="card-desc" class="contact-column" style="align-items: center;">
+                        <div class="contact-row">
+                            <a href="mailto:kevin.spinicci@outlook.com" class="big-link">
+                                    <i class="fa-solid fa-at"></i>
+                                    kevin.spinicci@outlook.com
+                            </a> 
+                        </div>
+                        <div class="contact-row">
+                            <div class="contact-column">
+                                <a href="https://github.com/spinicck" target="_blank" class="big-link">
+                                    <i class="fa-brands fa-github"></i>
+                                    spinicck
+                                </a>
+                                <a href="https://www.linkedin.com/in/kevin-spinicci" target="_blank" class="big-link">
+                                    <i class="fa-brands fa-linkedin"></i>
+                                    in/kevin-spinicci
+                                </a>
+                            </div>
+                            <div class="contact-column">
+                                <a href="https://orcid.org/0000-0001-9200-4401" target="_blank" class="big-link">
+                                    <i class="fa-brands fa-orcid"></i>
+                                    0000-0001-9200-4401
+                                </a>
+                                <a href="https://www.researchgate.net/profile/Kevin_Spinicci" target="_blank" class="big-link">
+                                    <i class="fa-brands fa-researchgate"></i>
+                                    Kévin Spinicci
+                                </a>
+                            </div>
+                        </div>
                     </div>
                 </regular-card>
 
@@ -241,36 +279,6 @@
                 <img slot="modal-content" style="width: 100%; height: 100%; object-fit: contain;" src="assets/img/umap_scrnaseq.png" alt="Results of tumour growth model.">
             </modal-card>
 
-        </section>
-
-        <section id="contact" class="body-section">
-            <div>
-                <h1 class="section-title">Contact</h1>
-            <div class="contact-list">
-                <div class="contact-item">
-                   <span>
-                        Want to connect ? Mail me !
-                   </span> 
-                </div>
-                <div class="contact-item">
-                    <i class="material-symbols-outlined material-icons md-36">alternate_email</i>
-                    <a href="mailto:john.doe@example.com">john.doe@example.com</a>
-                </div>
-                <div class="contact-item">
-                    <a href="https://github.com/" target="_blank">
-                        <i class="fa-brands fa-github"></i>
-                    </a>
-                    <a href="https://www.linkedin.com/" target="_blank">
-                        <i class="fa-brands fa-linkedin"></i>
-                    </a>
-                    <a href="https://orcid.org/" target="_blank">
-                        <i class="fa-brands fa-orcid"></i>
-                    </a>
-                    <a href="https://www.researchgate.net/" target="_blank">
-                        <i class="fa-brands fa-researchgate"></i>
-                    </a>
-                </div>
-            </div>
         </section>
 
 	</body>

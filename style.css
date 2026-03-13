@@ -318,9 +318,7 @@ body {
 
 
 /* multi-classes selectors */
-.card-item a {
-    color: var(--md-sys-color-primary);
-}
+/* insert here in case these are needed */
 
 /* dynamic and state rules (hover, active, ...) */
 .card-hover:hover .card-header-title {
@@ -339,38 +337,69 @@ body {
 * Contact
 *******************************************************************************/
 /* css classes */
-.contact-list {
+.contact-card {}
+
+.contact-row {
     display: flex;
-    flex-flow: column;
-    gap: 15px;
-    color: var(--md-sys-color-on-surface-container);
-    background-color: var(--md-sys-color-secondary-container);
-    align-items: center;
-    justify-content: center;
-    border-radius: 25px;
-    padding: 15px 15px 15px 15px;
+    flex-direction: row;
+    gap: 12px;
+    justify-content: space-evenly;
+    width: 100%;
 }
 
-.contact-item {
-    font-size: 26pt;
+.contact-column {
     display: flex;
-    align-items: center;
-    column-gap: 15px;
+    flex-direction: column;
+    gap: 12px;
+    justify-content: space-evenly;
+    height: 100%;
 }
 
 /* multi-classes selectors */
-.contact-list a {
-    color: var(--md-sys-color-on-surface-container);
-    text-decoration: none;
-    padding: 15px 15px 15px 15px;
-    border-radius: 15px;
-    align-items: center;
-    justify-content: center;
+.contact-card i {
+    font-size: 24pt;
 }
 
+/* dynamic and state rules (hover, active, ...) */
+/* insert here in case these are needed */
+
+/********************************************************************************
+* Some general purpose stuff
+********************************************************************************/
+/* css classes */
+.big-link {
+    display: flex;
+    justify-content: center;
+    font-size: 18pt;
+    gap: 8px;
+    color: var(--md-sys-color-primary);
+    padding: 15px;
+    border-radius: 12px;
+    transition: transform ease-in-out 400ms;
+}
+
+a {
+    text-decoration: none;
+}
+
+/* multi-classes selectors */
+.big-link i {
+    font-size: 24pt;
+}
 
 /* dynamic and state rules (hover, active, ...) */
-.contact-item a:hover {
-    color: var(--md-sys-color-on-primary);
-    background-color: var(--md-sys-color-primary);
+.big-link:hover {
+    transform: scale(1.1) translate(0px, -10px);
+}
+
+.big-link:hover::after {
+    background-color: var(--md-sys-color-primary); 
+    bottom: 0;
+    content: '';
+    display: block;
+    height: 4px;
+    left: 50%;
+    position: absolute;
+    transform: translate(-50%,0);
+    width: 20%;
 }
