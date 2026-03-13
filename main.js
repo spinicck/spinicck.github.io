@@ -8,23 +8,6 @@ var currentOpenedCard = null
 var currentOpenedModal = null
 
 /**
- * Observer to animate element appearances on screen
- */
-const showOnScrollObserver = new IntersectionObserver((entries) => {
-    entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-            entry.target.classList.toggle("show")
-        } else {
-            entry.target.classList.toggle("show")
-        }
-    });
-})
-
-/* Get elements with scroll animation and add observer. */
-const showOnScrollElements = document.querySelectorAll(".show-on-scroll.hidden")
-showOnScrollElements.forEach((el) => showOnScrollObserver.observe(el));
-
-/**
  * Show/hide the navbar when the navbar toggle button is pressed.
  * Hide the navbar when an element is pressed.
  * @returns void
@@ -32,16 +15,13 @@ showOnScrollElements.forEach((el) => showOnScrollObserver.observe(el));
 function toggleNavbar() {
     var navbar = document.getElementById("nav-bar");
     var navToggleIcon = document.getElementById("nav-toggle-icon");
-    /* Only trigger toggle event if screen size is smaller than 800px */
-    if (!matchMedia("(max-width: 800px)").matches) {
+    /* Only trigger toggle event if screen size is smaller than 1000px */
+    if (!matchMedia("(max-width: 1000px)").matches) {
         return;
     }
-    if (navbar.classList.contains("compact")) {
-        navToggleIcon.innerHTML = "menu"
-    } else {
-        navToggleIcon.innerHTML = "close"
-    }
     navbar.classList.toggle("compact")
+    navToggleIcon.classList.toggle("fa-bars")
+    navToggleIcon.classList.toggle("fa-x")
 }
 
 /**
@@ -50,16 +30,22 @@ function toggleNavbar() {
 function toggleLightDarkMode() {
     const hmtlTag = document.getElementsByTagName("html")[0];
     const navThemeIcon = document.getElementById("nav-theme-icon")
+    navThemeIcon.classList.toggle("fa-sun")
+    navThemeIcon.classList.toggle("fa-moon")
     if (hmtlTag.className === "light") {
         hmtlTag.className = "dark"
-        navThemeIcon.innerHTML = "dark_mode"
     } else {
         hmtlTag.className = "light"
-        navThemeIcon.innerHTML = "light_mode"
     }
 }
 
-async function openCard(e) {
+/**
+ * Trigger animation opening a card and a modal.
+ * Set the global variables `currentOpenedCard` and `currentOpenedModal`.
+ * @param {ExpandCard} e card element node
+ * @param {string} mid card modal id
+ */
+async function openCard(e, mid) {
     console.debug("Call openCard: ", e)
     currentOpenedCard = e
     /* Compute center of viewport */
@@ -83,10 +69,9 @@ async function openCard(e) {
     animation.commitStyles()
     animation.cancel()
     /* Make modal */
-    currentOpenedModal = currentOpenedCard.getElementsByTagName("modal-content")[0].cloneNode(true)
+    currentOpenedModal = document.querySelector(`#${mid}`)
     currentOpenedModal.style.display = "flex"
     currentOpenedModal.onclick = closeModal
-    document.body.appendChild(currentOpenedModal)
     /* Animate modal opening */
     animation = await currentOpenedModal.animate(
         [
@@ -99,6 +84,10 @@ async function openCard(e) {
     animation.cancel()
 }
 
+/**
+ * Function that animate the modal closing, and expanded card minimizing.
+ * Reset the 'currentOpenedCard' and 'currentOpenedModal' global variables.
+ */
 async function closeModal() {
     /* Animation modal closing */
     let animation = await currentOpenedModal.animate(
@@ -112,7 +101,6 @@ async function closeModal() {
     animation.cancel()
     /* Hide modal and remove from DOM */
     currentOpenedModal.style.display = "none"
-    currentOpenedModal.remove()
     currentOpenedModal = null
     /* Animate card minimizing */
     animation = await currentOpenedCard.animate(
@@ -127,3 +115,48 @@ async function closeModal() {
     /* Empty current Opened card */
     currentOpenedCard = null
 }
+
+/**
+ * Class to make reusable regular card components
+ */
+class RegularCard extends HTMLElement {
+    constructor() {
+        super();
+        let template = document.getElementById("regular-card");
+        let templateContent = template.content;
+
+        const shadowRoot = this.attachShadow({ mode: "open" });
+        shadowRoot.appendChild(templateContent.cloneNode(true));
+    }
+}
+
+/**
+ * Class to make reusable expandable card components
+ */
+class ExpandCard extends HTMLElement {
+    constructor() {
+        super();
+        let template = document.getElementById("expand-card");
+        let templateContent = template.content;
+
+        const shadowRoot = this.attachShadow({ mode: "open" });
+        shadowRoot.appendChild(templateContent.cloneNode(true));
+    }
+}
+
+/**
+ * Class to make reusable modal card.
+ */
+class ModalCard extends HTMLElement {
+    constructor() {
+        super();
+        let template = document.getElementById("modal-card");
+        let templateContent = template.content;
+        const shadowRoot = this.attachShadow({ mode: "open" });
+        shadowRoot.appendChild(templateContent.cloneNode(true));
+    }
+}
+/* Define simple card html-tag */
+customElements.define("regular-card", RegularCard, );
+customElements.define("expand-card", ExpandCard, );
+customElements.define("modal-card", ModalCard, );

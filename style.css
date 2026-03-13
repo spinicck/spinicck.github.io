@@ -4,10 +4,10 @@
 
 /* css classes */
 html{
-    font-family: "Roboto", sans-serif, Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
-    font-size: 16px;
-    color: var(--md-sys-color-on-background);
-    background-color: var(--md-sys-color-background);
+    font-family: "Open Sans", "Roboto Mono";
+    font-size: 14pt;
+    color: var(--color-on-background);
+    background-color: var(--color-background);
 }
 
 body {
@@ -25,48 +25,83 @@ body {
 * General rules
 *******************************************************************************/
 /* css classes */
-.section-title {
-    color: var(--md-sys-color-primary);
+a {
+    text-decoration: none;
 }
 
-.section-subtitle {
-    color: var(--md-sys-color-secondary);
+.flex-row {
+    display: flex;
+    flex-direction: row;
+    gap: 12px;
+    align-items: center;
+    justify-content: space-evenly;
+    width: 100%;
+}
+
+.flex-column {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    align-items: center;
+    justify-content: space-evenly;
+    height: 100%;
+}
+
+.flex-align-start {
+    align-items: flex-start;
+}
+
+.flex-justify-end {
+    justify-content: flex-end;
+}
+
+.big-link {
+    display: flex;
+    justify-content: center;
+    font-size: 18pt;
+    gap: 8px;
+    color: var(--color-primary);
+    padding: 15px;
+    border-radius: 12px;
+    transition: transform ease-in-out 400ms;
 }
 
 .body-section{
     padding: 15px 5vw 15px 5vw;
 }
 
-.card {
-    box-shadow: 4px 4px 8px var(--md-sys-color-shadow);
-}
-
-.from-bottom {
-    transform: translateY(10%);
-}
-
-.material-icons.md-18 { font-size: 18px; }
-.material-icons.md-24 { font-size: 24px; }
-.material-icons.md-36 { font-size: 36px; }
-.material-icons.md-48 { font-size: 48px; }
-
 /* multi-classes selectors */
-.show-on-scroll.hidden {
-    opacity: 0;
-    filter: blur(2px);
-    transition: all 1s ease-in-out;
+.big-link i {
+    font-size: 24pt;
 }
 
-.show-on-scroll.show {
-    opacity: 1;
-    filter: blur(0px);
-    transform: translateX(0);
-    transform: translateY(0);
-}
 /* dynamic and state rules (hover, active, ...) */
+.big-link:hover {
+    transform: scale(1.1) translate(0px, -10px);
+}
+
+.big-link:hover::after {
+    background-color: var(--color-primary); 
+    bottom: 0;
+    content: '';
+    display: block;
+    height: 4px;
+    left: 50%;
+    position: absolute;
+    transform: translate(-50%,0);
+    width: 20%;
+}
+
 @media(prefers-reduced-motion) {
     .show-on-scroll.hidden {
         transition: none;
+    }
+}
+
+@media screen and (max-width: 1000px) {
+    .flex-row.responsive {
+        flex-direction: column;
+        align-items: center;
     }
 }
 
@@ -75,19 +110,16 @@ body {
 *******************************************************************************/
 /* css classes */
 .nav-bar{
-    view-transition-name: navbar;
     z-index: 999; /* ensure the nav-bar is on top of everything */
     position: sticky; /* Set the navbar to fixed position */    
     top: 0; /* Position the navbar at the top of the page */
-    padding: 2vw 2vw 1vw 1vw;
+    padding: 4px 16px;
     justify-content: space-between;
     display: flex;
     flex-flow: row;
-    gap: 1em;
     align-items: center;
-    background: var(--md-sys-color-primary);
-    height: 5vh;
-    transition: 100ms ease-in;
+    background: var(--color-primary);
+    transition: height 300ms ease-in;
 }
 
 .nav-container {
@@ -102,14 +134,11 @@ body {
 
 .nav-main {
     gap: 15px;
+    font-size: larger;
 }
 
-.nav-link {
-    font-style: normal;
-}
-
-.nav-title {
-    font-size: 1.2rem;
+.nav-item {
+    transition: 200ms ease-in-out;
 }
 
 .nav-button{
@@ -124,13 +153,17 @@ body {
     height: 100%;
 }
 
+.nav-icon {
+    font-size: 32px;
+}
+
 /* multi-classes selectors */
-.nav-link, .nav-button, .nav-title {
-    color: var(--md-sys-color-on-primary);
+.nav-item, .nav-button, .nav-title {
+    color: var(--color-on-primary);
     text-decoration: none;
 }
 
-.nav-container .nav-link{
+.nav-container .nav-item{
     display: inline-block;
     text-align: center;
     border-radius: 5px;
@@ -142,26 +175,31 @@ body {
     flex-grow: 2;
 }
 
-.nav-button:hover, .nav-link:hover{
-    transition: 100ms ease-in-out;
+.nav-item:hover{
+    transform: translate(0px, 8px);
     scale: 1.2;
 }
 
-.nav-link:hover{
-    color: var(--md-sys-color-on-primary-container);
-    background-color: var(--md-sys-color-primary-container);
-}
+.nav-left .nav-button:last-child {display: none;}
 
-.nav-left .nav-button {display: none;}
+@media screen and (max-width: 1000px){
+    .nav-main, .nav-right {
+        display: none;
+        font-size: 32pt;
+    }
+    .nav-left .nav-button:last-child {
+        display: block;
+    }
 
-@media screen and (max-width: 600px){
-    .nav-main, .nav-right { display: none; font-size: 1.5rem;}
-    .nav-left .nav-button { display: block; }
+    .nav-bar {
+        height: 8vh;
+    }   
 
     .nav-bar.compact {
         display: flex;
         flex-flow: column;
-        height: 60vh;
+        min-height: fit-content;
+        height: 50vh;
     }
 
     .nav-left {
@@ -173,35 +211,25 @@ body {
 
     .nav-bar.compact .nav-main{
         display: flex;
-        flex-flow: column;
+        flex-direction: column;
     }
 
     .nav-bar.compact .nav-right{
         display: flex;
-    }
-
-    .nav-bar.compact .nav-link{
-        display: block;
-    }
-
-    .nav-bar.compact .nav-button{
-        display: block;
+        flex-direction: column;
     }
 }
 
 /*******************************************************************************
 * About me
 *******************************************************************************/
-/* css classes */
-.aboutme {
-    display: grid;
-    grid-template-columns: 6fr 4fr;
-    column-gap: 5px 50px;
-    border-radius: 25px;
-    padding: 15px 15px 15px 15px;
-}
+/* Used in html, use this for styling the description in 'aboutme' */
+/* .aboutme-description {} */
+/* .aboutme {} */
 
+/* css classes */
 .aboutme-main {
+    width: 70ch;
     padding: 6px;
     padding-right: 12px;
     font-size: 1.2rem;
@@ -213,12 +241,9 @@ body {
 }
 
 .aboutme-title {
-    color: var(--md-sys-color-primary);
+    color: var(--color-primary);
     font-size: 4rem;
 }
-
-/* Used in html, use this for styling the description in 'aboutme' */
-/* .aboutme-description {} */
 
 .aboutme-picture {
     border-radius: 100%;
@@ -251,7 +276,7 @@ body {
 *******************************************************************************/
 /* css classes */
 .card-shadow {
-    box-shadow: 0px 0px 8px -5px var(--md-sys-color-shadow);
+    box-shadow: 0px 0px 8px -5px var(--color-shadow);
 }
 
 .card-list {
@@ -267,23 +292,20 @@ body {
     gap: 5px;
     padding: 15px 15px 15px 15px;
     border-radius: 15px;
-    background: var(--md-sys-color-surface-container-lowest);
-    color: var(--md-sys-color-on-surface-container);
+    background: var(--color-container);
+    color: var(--color-on-container);
 }
 
-.card-header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+.card-title {
+    color: var(--color-primary);
+    font-size: 20pt;
+    transition: all 200ms ease-in-out;
 }
 
-.card-header-title {
-    color: var(--md-sys-color-on-background);
-}
-
-.card-header-info {
-    font-size: small;
-    color: var(--md-sys-color-tertiary);
+.card-expand-icon {
+    font-size: 16pt;
+    color: var(--color-primary);
+    transition: all 200ms ease-in-out;
 }
 
 .modal {
@@ -299,11 +321,15 @@ body {
     background: rgba(0,0,0,0.4); /* Black w/ opacity */
 }
 
-/* Size content of the modal */
-.modal > div {
+.modal-card {
+    min-width: 20%;
     max-width: 90%;
     max-height: 70%;
     overflow: auto; /* Enable scroll if needed */
+}
+
+.icon-item {
+    width: 48px;
 }
 
 
@@ -311,54 +337,27 @@ body {
 /* insert here in case these are needed */
 
 /* dynamic and state rules (hover, active, ...) */
-.card-hover:hover .card-header-title {
-    color: var(--md-sys-color-primary);
+:host(.card-hover:hover) .card-title,
+    :host(.card-hover:hover) .card-expand-icon,
+    .card-hover:hover .card-expand-icon
+    {
+    color: var(--color-secondary);
 }
 
-.card-hover:hover .card-header-info {
-    color: var(--md-sys-color-secondary);
-}
 
 .card-item.card-hover:hover{
-    box-shadow: 0px 0px 8px var(--md-sys-color-primary);
+    box-shadow: 0px 0px 8px var(--color-secondary);
 }
 
-/*******************************************************************************
-* Contact
-*******************************************************************************/
-/* css classes */
-.contact-list {
-    display: flex;
-    flex-flow: column;
-    gap: 15px;
-    color: var(--md-sys-color-on-surface-container);
-    background-color: var(--md-sys-color-secondary-container);
-    align-items: center;
-    justify-content: center;
-    border-radius: 25px;
-    padding: 15px 15px 15px 15px;
-}
-
-.contact-item {
-    font-size: 26pt;
-    display: flex;
-    align-items: center;
-    column-gap: 15px;
-}
-
-/* multi-classes selectors */
-.contact-list a {
-    color: var(--md-sys-color-on-surface-container);
-    text-decoration: none;
-    padding: 15px 15px 15px 15px;
-    border-radius: 15px;
-    align-items: center;
-    justify-content: center;
-}
-
-
-/* dynamic and state rules (hover, active, ...) */
-.contact-item a:hover {
-    color: var(--md-sys-color-on-primary);
-    background-color: var(--md-sys-color-primary);
+@media screen and (max-width: 1000px) {
+    .card-list {
+        display: flex;
+        flex-flow: column;
+        align-items: center;
+        justify-items: center;
+        gap: 10px;
+    }
+    .card-item {
+        width: 100%;
+    }
 }
