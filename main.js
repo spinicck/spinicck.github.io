@@ -6,6 +6,42 @@
 
 var currentOpenedCard = null
 var currentOpenedModal = null
+var defaultCookieExdays = 365
+var themeMode = getCookie("themeMode")
+
+/**
+ * Set the value of a cookie property.
+ * @param {string} name Cookie name
+ * @param {string} value Value of the cookie
+ * @param {integer} exdays Numnber of days until cookie expires
+ */
+function setCookie(name, value, exdays) {
+  const d = new Date();
+  d.setTime(d.getTime() + (exdays*24*60*60*1000));
+  let expires = "expires="+ d.toUTCString();
+  document.cookie = name + "=" + value + ";" + expires + ";path=/";
+}
+
+/**
+ * Get the value of a cookie property.
+ * @param {string} name Name of the cookie to check
+ * @returns The value of the cookie property or an empty string if the cookie is not found.
+ */
+function getCookie(name) {
+  let cookieName = name + "=";
+  let decodedCookie = decodeURIComponent(document.cookie);
+  let ca = decodedCookie.split(';');
+  for(let i = 0; i <ca.length; i++) {
+    let c = ca[i];
+    while (c.charAt(0) == ' ') {
+      c = c.substring(1);
+    }
+    if (c.indexOf(cookieName) == 0) {
+      return c.substring(cookieName.length, c.length);
+    }
+  }
+  return "";
+}
 
 /**
  * Show/hide the navbar when the navbar toggle button is pressed.
@@ -13,13 +49,13 @@ var currentOpenedModal = null
  * @returns void
  */
 function toggleNavbar() {
-    var navbar = document.getElementById("nav-bar");
+    var navbarOverlay = document.getElementById("nav-overlay");
     var navToggleIcon = document.getElementById("nav-toggle-icon");
     /* Only trigger toggle event if screen size is smaller than 1000px */
     if (!matchMedia("(max-width: 1000px)").matches) {
         return;
     }
-    navbar.classList.toggle("compact")
+    navbarOverlay.classList.toggle("show-overlay")
     navToggleIcon.classList.toggle("fa-bars")
     navToggleIcon.classList.toggle("fa-x")
 }
@@ -28,14 +64,59 @@ function toggleNavbar() {
  * Function to switch between light and dark theme.
  */
 function toggleLightDarkMode() {
+    switch (themeMode) {
+        case "light":
+            setThemeMode("dark")
+            break;
+        case "dark":
+            setThemeMode("light")
+        default:
+            setThemeMode("light")
+            break;
+    }
+}
+
+/**
+ * Switch the current theme to light or dark mode.
+ * If the theme selected is not found, default to light theme.
+ * @param {string} mode Mode to switch to, accepted values are "light" or "dark"
+ */
+function setThemeMode(mode){
+    console.debug("set theme: ", mode)
     const hmtlTag = document.getElementsByTagName("html")[0];
     const navThemeIcon = document.getElementById("nav-theme-icon")
-    navThemeIcon.classList.toggle("fa-sun")
-    navThemeIcon.classList.toggle("fa-moon")
-    if (hmtlTag.className === "light") {
-        hmtlTag.className = "dark"
-    } else {
-        hmtlTag.className = "light"
+    const mobileNavThemeIcon = document.getElementById("mobile-nav-theme-icon")
+    switch (mode) {
+        case "light":
+            themeMode = "light"
+            hmtlTag.classList.remove("dark")
+            hmtlTag.classList.add("light")
+            setCookie("themeMode", themeMode, defaultCookieExdays)
+            navThemeIcon.classList.remove("fa-moon")
+            navThemeIcon.classList.add("fa-sun")
+            mobileNavThemeIcon.classList.remove("fa-moon")
+            mobileNavThemeIcon.classList.add("fa-sun")
+            break;
+        case "dark":
+            themeMode = "dark"
+            hmtlTag.classList.remove("light")
+            hmtlTag.classList.add("dark")
+            setCookie("themeMode", themeMode, defaultCookieExdays)
+            navThemeIcon.classList.remove("fa-sun")
+            navThemeIcon.classList.add("fa-moon")
+            mobileNavThemeIcon.classList.remove("fa-un")
+            mobileNavThemeIcon.classList.add("fa-moon")
+            break;
+        default:
+            themeMode = "light"
+            hmtlTag.classList.remove("dark")
+            hmtlTag.classList.add("light")
+            setCookie("themeMode", themeMode, defaultCookieExdays)
+            navThemeIcon.classList.remove("fa-moon")
+            navThemeIcon.classList.add("fa-sun")
+            mobileNavThemeIcon.classList.remove("fa-moon")
+            mobileNavThemeIcon.classList.add("fa-sun")
+            break;
     }
 }
 
@@ -48,40 +129,10 @@ function toggleLightDarkMode() {
 async function openCard(e, mid) {
     console.debug("Call openCard: ", e)
     currentOpenedCard = e
-    /* Compute center of viewport */
-    let centerX = window.innerWidth / 2
-    let centerY = window.innerHeight / 2
-    /* Compute center of current element */
-    let bbox = currentOpenedCard.getBoundingClientRect()
-    let coordX = bbox.x + (bbox.width / 2)
-    let coordY = bbox.y + (bbox.height / 2)
-    /* Compute translation vector */
-    let transVectX = centerX - coordX
-    let transVectY = centerY - coordY
-    /* Make animation for card opening */
-    let animation = await currentOpenedCard.animate(
-        {
-            transform: `translate(${transVectX}px, ${transVectY}px) scale(1.5)`,
-            filter: "blur(15px)",
-        },
-        { duration: 100, fill: "forwards" }
-    ).finished
-    animation.commitStyles()
-    animation.cancel()
-    /* Make modal */
+    currentOpenedCard.classList.toggle("collapse")
     currentOpenedModal = document.querySelector(`#${mid}`)
-    currentOpenedModal.style.display = "flex"
+    currentOpenedModal.classList.toggle("show")
     currentOpenedModal.onclick = closeModal
-    /* Animate modal opening */
-    animation = await currentOpenedModal.animate(
-        [
-            { filter: "blur(15px)", opacity: 0, transform: "scale(0.4)" },
-            { filter: "blur(0px)", opacity: 1, transform: "scale(1)" }
-        ],
-        { duration: 100, fill: "forwards" }
-    ).finished
-    animation.commitStyles()
-    animation.cancel()
 }
 
 /**
@@ -89,30 +140,9 @@ async function openCard(e, mid) {
  * Reset the 'currentOpenedCard' and 'currentOpenedModal' global variables.
  */
 async function closeModal() {
-    /* Animation modal closing */
-    let animation = await currentOpenedModal.animate(
-        [
-            { opacity: 1, transform: "scale(1)" },
-            { opacity: 0, transform: "scale(0)" }
-        ],
-        { duration: 100, fill: "forwards" }
-    ).finished
-    animation.commitStyles()
-    animation.cancel()
-    /* Hide modal and remove from DOM */
-    currentOpenedModal.style.display = "none"
+    currentOpenedCard.classList.toggle("collapse")
+    currentOpenedModal.classList.toggle("show")
     currentOpenedModal = null
-    /* Animate card minimizing */
-    animation = await currentOpenedCard.animate(
-        { 
-            transform: "translate(0) scale(1)",
-            filter: "blur(0px)",
-        },
-        { duration: 100, fill: "forwards" }
-    ).finished
-    animation.commitStyles()
-    animation.cancel()
-    /* Empty current Opened card */
     currentOpenedCard = null
 }
 
@@ -160,3 +190,5 @@ class ModalCard extends HTMLElement {
 customElements.define("regular-card", RegularCard, );
 customElements.define("expand-card", ExpandCard, );
 customElements.define("modal-card", ModalCard, );
+
+setThemeMode(themeMode)

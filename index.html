@@ -93,29 +93,35 @@
     </template>
 
     <nav id="nav-bar" class="nav-bar">
-        <div class="nav-left nav-container">
+        <div class="nav-left">
             <a class="nav-button nav-item" href="/">
                 <i class="fa-solid fa-libra nav-icon"></i>
             </a>
-            <button class="nav-button nav-item" onclick="toggleNavbar()">
+        </div>
+        <div class="nav-main">
+            <a class="nav-item" onclick="toggleNavbar()" href="#aboutme">About me</a>
+            <a class="nav-item" onclick="toggleNavbar()" href="#research">Research</a>
+            <a class="nav-item" onclick="toggleNavbar()" href="#contact">Contact</a>
+        </div>
+        <div class="nav-right">
+            <div class="nav-right-wrapper">
+                <button class="nav-button nav-item" onclick="toggleLightDarkMode()">
+                    <i id="nav-theme-icon" class="fa-solid fa-sun nav-icon"></i>
+                </button>
+            </div>
+            <button id="nav-menu-button" class="nav-button nav-item" onclick="toggleNavbar()">
                 <i id="nav-toggle-icon" class="fa-solid fa-bars nav-icon"></i>
             </button>
         </div>
-        <ul class="nav-main nav-container">
-            <li>
-                <a class="nav-item" onclick="toggleNavbar()" href="#aboutme">About me</a>
-            </li>
-            <li>
-                <a class="nav-item" onclick="toggleNavbar()" href="#research">Research</a>
-            </li>
-            <li>
-                <a class="nav-item" onclick="toggleNavbar()" href="#contact">Contact</a>
-            </li>
-        </ul>
-        <div class="nav-right nav-container">
-            <button class="nav-button nav-item" onclick="toggleLightDarkMode()">
-                <i id="nav-theme-icon" class="fa-solid fa-sun nav-icon"></i>
-            </button>
+        <div id="nav-overlay" class="nav-overlay">
+            <a class="nav-item" onclick="toggleNavbar()" href="#aboutme">About me</a>
+            <a class="nav-item" onclick="toggleNavbar()" href="#research">Research</a>
+            <a class="nav-item" onclick="toggleNavbar()" href="#contact">Contact</a>
+            <div>
+                <button class="nav-button nav-item" onclick="toggleLightDarkMode()">
+                    <i id="mobile-nav-theme-icon" class="fa-solid fa-sun nav-icon"></i>
+                </button>
+            </div>
         </div>
     </nav>
 	<body>
@@ -128,7 +134,7 @@
                     </span>
                 </div>
                 <div class="flex-column responsive aboutme-right">
-                    <img class="aboutme-picture" width="512px" src="assets/img/hero-picture.JPG" alt="Profile Picture">
+                    <img class="aboutme-picture" src="assets/img/hero-picture.JPG" alt="Profile Picture">
                 </div>
             </div>
         </section>
@@ -139,7 +145,7 @@
 
                 <!-- First card -->
                 <expand-card
-                    class="card-item card-shadow card-hover"
+                    class="card-item card-shadow card-hover card-expand collapse"
                     style="grid-row: span 2; grid-column: span 2;"
                     onclick="openCard(this, 'modal-gbm-growth')"
                     >
@@ -151,7 +157,7 @@
                         <span>
                             While cells rely mainly on oxidative processes to generate their energy, cancer cells have been to have increased usage of glycolysis leading to increased glucose consumption and lower pH. This behaviour has been observed in normoxia and was called the Warburg effect. Through mathematical modelling of tumour growth, I showed that both oxygen fluctuations and genetic regulation may trigger the appearance of a Warburg phenotype in model.
                         </span>
-                        <img src="assets/img/res_gbm_growth.png" width="256px" alt="Results of tumour growth model.">
+                        <img  src="assets/img/res_gbm_growth.png" class="skill-image" alt="Results of tumour growth model.">
                     </div>
                 </expand-card>
 
@@ -197,12 +203,21 @@
                         Want to see me present ?
                     </div>
                     <div slot="card-desc" style="display: flex; align-items: center; justify-content: center;">
-                        <iframe width="440" height="280" src="https://www.youtube.com/embed/HpJxrjWVUL8?si=NZzbR2i5av9TBN67" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                        <iframe
+                            src="https://www.youtube.com/embed/HpJxrjWVUL8?si=NZzbR2i5av9TBN67"
+                            class="yt-skill-video"
+                            title="YouTube video player"
+                            frameborder="0"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                            referrerpolicy="strict-origin-when-cross-origin"
+                            allowfullscreen
+                            >
+                        </iframe>
                     </div>
                 </regular-card>
 
                 <expand-card
-                    class="card-item card-shadow card-hover"
+                    class="card-item card-shadow card-hover card-expand collapse"
                     style="grid-column: span 2;"
                     onclick="openCard(this, 'modal-umap-scrnaseq')"
                     >
@@ -211,7 +226,7 @@
                         Statistical data analysis of bulk and single-cell transcriptomic data
                     </div>
                     <div slot="card-desc" class="flex-row responsive">
-                        <img src="assets/img/umap_scrnaseq.png" width="256px" alt="Results of tumour growth model.">
+                        <img src="assets/img/umap_scrnaseq.png" class="skill-image" alt="Results of tumour growth model.">
                         <span>
                             Transcriptomic data are widely used to detect differences between gene expression pattern between two factors. This standard analysis has a wide vareiety of application including finding targets for disease treatment or merely assessing cell-types in a cell population. I applied differential expression analysis and pathway enrichment to determine the frequently deregulated pathways in glioblastoma bulk RNA data. Using methods for single-cell, such as Seurat and scanpy, I assessed the batch effect in data with the goal of correcting this biais and searched for markers to identify cell-types in different cells clusters.
                         </span>
@@ -247,14 +262,14 @@
                         Want to connect ? Here is my info !
                     </div>
                     <div slot="card-desc" class="flex-column responsive" style="align-items: center;">
-                        <div class="flex-row responsive">
+                        <div class="flex-row responsive flex-align-start">
                             <a href="mailto:kevin.spinicci@outlook.com" class="big-link">
                                     <i class="fa-solid fa-at"></i>
                                     kevin.spinicci@outlook.com
                             </a> 
                         </div>
                         <div class="flex-row responsive">
-                            <div class="flex-column flex-align-start">
+                            <div class="flex-column flex-align-start align-left-on-mobile">
                                 <a href="https://github.com/spinicck" target="_blank" class="big-link">
                                     <i class="fa-brands fa-github"></i>
                                     spinicck
@@ -264,7 +279,7 @@
                                     in/kevin-spinicci
                                 </a>
                             </div>
-                            <div class="flex-column flex-align-start">
+                            <div class="flex-column flex-align-start align-left-on-mobile">
                                 <a href="https://orcid.org/0000-0001-9200-4401" target="_blank" class="big-link">
                                     <i class="fa-brands fa-orcid"></i>
                                     0000-0001-9200-4401
