@@ -4,11 +4,13 @@
 
 /* css classes */
 html{
-    --tiny-font-size: 8pt;
-    --small-font-size: 10pt;
-    --medium-font-size: 14pt;
-    --large-font-size: 18pt;
-    --huge-font-size: 24pt;
+    --tiny-font-size: 10px;
+    --small-font-size: 14px;
+    --medium-font-size: 18px;
+    --large-font-size: 24px;
+    --huge-font-size: 58px;
+    --nav-menu-size: 16px;
+    --nav-icon-size: 24px;
     font-family: "Open Sans", "Roboto Mono";
     font-size: var(--medium-font-size);
     color: var(--color-on-background);
@@ -26,11 +28,13 @@ body {
 /* dynamic and state rules (hover, active, ...) */
 @media screen and (max-width: 1000px) {
     html{
-        --tiny-font-size: 14pt;
-        --small-font-size: 18pt;
-        --medium-font-size: 24pt;
-        --large-font-size: 28pt;
-        --huge-font-size: 32pt;
+        --tiny-font-size: 10px;
+        --small-font-size: 14px;
+        --medium-font-size: 24px;
+        --large-font-size: 28px;
+        --huge-font-size: 32px;
+        --nav-menu-size: 48px;
+        --nav-icon-size: 56px;
     }
 }
 
@@ -153,7 +157,7 @@ a {
 
 .nav-main {
     gap: 40px;
-    font-size: var(--large-font-size);
+    font-size: var(--nav-menu-size);
 }
 
 .nav-overlay:not(.show-overlay) {
@@ -172,14 +176,14 @@ a {
     justify-content: center;
     gap: 30px;
     background: var(--color-primary);
-    font-size: var(--large-font-size);
+    font-size: var(--nav-menu-size);
     padding-bottom: 30px;
     transition: all 400ms ease-in-out;
     height: 0px;
 }
 
 .show-overlay {
-    height: 350px;
+    height: 512px;
 }
 
 .nav-item {
@@ -193,7 +197,7 @@ a {
 }
 
 .nav-icon {
-    font-size: var(--huge-font-size);
+    font-size: var(--nav-icon-size);
 }
 
 .nav-item {
@@ -282,9 +286,6 @@ a {
     .aboutme-right {
         justify-content: center;
     }
-    .aboutme-picture {
-        width: 768px;
-    }
 }
 
 /*******************************************************************************
@@ -310,6 +311,7 @@ a {
     border-radius: 15px;
     background: var(--color-container);
     color: var(--color-on-container);
+    font-size: var(--medium-font-size);
     transition: all 400ms ease-in-out;
 }
 
@@ -415,7 +417,7 @@ a {
         width: 96px;
     }
     .skill-image {
-        width: 640px;
+        width: 512px;
     }
     .yt-skill-video {
         width: 880px;
