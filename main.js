@@ -6,6 +6,42 @@
 
 var currentOpenedCard = null
 var currentOpenedModal = null
+var defaultCookieExdays = 365
+var themeMode = getCookie("themeMode")
+
+/**
+ * Set the value of a cookie property.
+ * @param {string} name Cookie name
+ * @param {string} value Value of the cookie
+ * @param {integer} exdays Numnber of days until cookie expires
+ */
+function setCookie(name, value, exdays) {
+  const d = new Date();
+  d.setTime(d.getTime() + (exdays*24*60*60*1000));
+  let expires = "expires="+ d.toUTCString();
+  document.cookie = name + "=" + value + ";" + expires + ";path=/";
+}
+
+/**
+ * Get the value of a cookie property.
+ * @param {string} name Name of the cookie to check
+ * @returns The value of the cookie property or an empty string if the cookie is not found.
+ */
+function getCookie(name) {
+  let cookieName = name + "=";
+  let decodedCookie = decodeURIComponent(document.cookie);
+  let ca = decodedCookie.split(';');
+  for(let i = 0; i <ca.length; i++) {
+    let c = ca[i];
+    while (c.charAt(0) == ' ') {
+      c = c.substring(1);
+    }
+    if (c.indexOf(cookieName) == 0) {
+      return c.substring(cookieName.length, c.length);
+    }
+  }
+  return "";
+}
 
 /**
  * Show/hide the navbar when the navbar toggle button is pressed.
@@ -28,14 +64,59 @@ function toggleNavbar() {
  * Function to switch between light and dark theme.
  */
 function toggleLightDarkMode() {
+    switch (themeMode) {
+        case "light":
+            setThemeMode("dark")
+            break;
+        case "dark":
+            setThemeMode("light")
+        default:
+            setThemeMode("light")
+            break;
+    }
+}
+
+/**
+ * Switch the current theme to light or dark mode.
+ * If the theme selected is not found, default to light theme.
+ * @param {string} mode Mode to switch to, accepted values are "light" or "dark"
+ */
+function setThemeMode(mode){
+    console.debug("set theme: ", mode)
     const hmtlTag = document.getElementsByTagName("html")[0];
     const navThemeIcon = document.getElementById("nav-theme-icon")
-    navThemeIcon.classList.toggle("fa-sun")
-    navThemeIcon.classList.toggle("fa-moon")
-    if (hmtlTag.className === "light") {
-        hmtlTag.className = "dark"
-    } else {
-        hmtlTag.className = "light"
+    const mobileNavThemeIcon = document.getElementById("mobile-nav-theme-icon")
+    switch (mode) {
+        case "light":
+            themeMode = "light"
+            hmtlTag.classList.remove("dark")
+            hmtlTag.classList.add("light")
+            setCookie("themeMode", themeMode, defaultCookieExdays)
+            navThemeIcon.classList.remove("fa-moon")
+            navThemeIcon.classList.add("fa-sun")
+            mobileNavThemeIcon.classList.remove("fa-moon")
+            mobileNavThemeIcon.classList.add("fa-sun")
+            break;
+        case "dark":
+            themeMode = "dark"
+            hmtlTag.classList.remove("light")
+            hmtlTag.classList.add("dark")
+            setCookie("themeMode", themeMode, defaultCookieExdays)
+            navThemeIcon.classList.remove("fa-sun")
+            navThemeIcon.classList.add("fa-moon")
+            mobileNavThemeIcon.classList.remove("fa-un")
+            mobileNavThemeIcon.classList.add("fa-moon")
+            break;
+        default:
+            themeMode = "light"
+            hmtlTag.classList.remove("dark")
+            hmtlTag.classList.add("light")
+            setCookie("themeMode", themeMode, defaultCookieExdays)
+            navThemeIcon.classList.remove("fa-moon")
+            navThemeIcon.classList.add("fa-sun")
+            mobileNavThemeIcon.classList.remove("fa-moon")
+            mobileNavThemeIcon.classList.add("fa-sun")
+            break;
     }
 }
 
@@ -109,3 +190,5 @@ class ModalCard extends HTMLElement {
 customElements.define("regular-card", RegularCard, );
 customElements.define("expand-card", ExpandCard, );
 customElements.define("modal-card", ModalCard, );
+
+setThemeMode(themeMode)
